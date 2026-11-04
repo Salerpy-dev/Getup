@@ -10,7 +10,9 @@
   <link rel="icon" href="./favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
   <style>
     :root {
       --background: #ffffff;
@@ -90,7 +92,7 @@
       outline-offset: 2px;
     }
 
-    
+
     /* Language Switcher & Thai Typography Support */
     html[lang="th"] body {
       font-family: 'Prompt', 'Onest', sans-serif;
@@ -122,21 +124,22 @@
       display: inline-flex;
       align-items: center;
       position: relative;
-      background: rgba(255, 255, 255, 0.45);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(230, 229, 226, 0.85);
+      background: rgba(255, 255, 255, 0.62);
+      backdrop-filter: blur(20px) saturate(190%);
+      -webkit-backdrop-filter: blur(20px) saturate(190%);
+      border: 1px solid rgba(255, 255, 255, 0.85);
       border-radius: 0.875rem;
-      padding: 0.2rem;
+      padding: 0.22rem;
       gap: 0.15rem;
-      transition: background-color 0.2s ease, border-color 0.2s ease;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04), inset 0 1px 1px rgba(255, 255, 255, 0.9);
       user-select: none;
     }
 
     .lang-switch:hover {
-      background: rgba(255, 255, 255, 0.75);
-      border-color: rgba(200, 199, 196, 0.9);
+      background: rgba(255, 255, 255, 0.85);
+      border-color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06), inset 0 1px 1px #ffffff;
     }
 
     .lang-btn {
@@ -198,9 +201,8 @@
       transform: translateY(8px) scale(0.96);
       transform-origin: top right;
       transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                  transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-      filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.22))
-              drop-shadow(0 4px 10px rgba(0, 0, 0, 0.12));
+        transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.22)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.12));
     }
 
     .lang-guide-tip.is-visible {
@@ -211,9 +213,12 @@
     }
 
     @keyframes langTipFloat {
-      0%, 100% {
+
+      0%,
+      100% {
         transform: translateY(0) scale(1);
       }
+
       50% {
         transform: translateY(-4px) scale(1);
       }
@@ -225,9 +230,11 @@
       right: 28px;
       width: 10px;
       height: 10px;
-      background: #0a0a0a;
-      border-left: 1px solid rgba(255, 255, 255, 0.15);
-      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(24px) saturate(190%);
+      -webkit-backdrop-filter: blur(24px) saturate(190%);
+      border-left: 1px solid rgba(255, 255, 255, 0.85);
+      border-top: 1px solid rgba(255, 255, 255, 0.85);
       transform: rotate(45deg);
       border-radius: 2px 0 0 0;
       z-index: 2;
@@ -237,27 +244,41 @@
       position: relative;
       display: flex;
       align-items: center;
-      gap: 0.65rem;
-      background: #0a0a0a;
-      color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      border-radius: 1rem;
-      padding: 0.65rem 0.85rem 0.65rem 0.75rem;
+      gap: 0.75rem;
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(24px) saturate(190%);
+      -webkit-backdrop-filter: blur(24px) saturate(190%);
+      color: #0a0a0a;
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      border-radius: 1.125rem;
+      padding: 0.7rem 0.95rem 0.7rem 0.8rem;
       white-space: nowrap;
       user-select: none;
       cursor: pointer;
+      box-shadow: 0 20px 42px -8px rgba(0, 0, 0, 0.16),
+                  0 4px 14px rgba(0, 0, 0, 0.05),
+                  inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.95);
+      transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .lang-guide-body:hover {
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 24px 48px -6px rgba(0, 0, 0, 0.18),
+                  0 6px 18px rgba(0, 0, 0, 0.06),
+                  inset 0 1px 1.5px 0 #ffffff;
     }
 
     .lang-guide-icon {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 1.75rem;
-      height: 1.75rem;
-      border-radius: 0.625rem;
-      background: rgba(255, 255, 255, 0.1);
-      color: #cf8047;
+      width: 1.85rem;
+      height: 1.85rem;
+      border-radius: 0.65rem;
+      background: rgba(207, 128, 71, 0.15);
+      color: #b15f2c;
       flex-shrink: 0;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.6);
     }
 
     .lang-guide-text {
@@ -269,8 +290,8 @@
     .lang-guide-title {
       font-family: 'Prompt', 'Onest', sans-serif;
       font-size: 0.8125rem;
-      font-weight: 500;
-      color: #ffffff;
+      font-weight: 600;
+      color: #0a0a0a;
       line-height: 1.25;
       letter-spacing: -0.01em;
     }
@@ -278,8 +299,8 @@
     .lang-guide-sub {
       font-family: 'Onest', sans-serif;
       font-size: 0.6875rem;
-      font-weight: 400;
-      color: rgba(255, 255, 255, 0.55);
+      font-weight: 500;
+      color: rgba(17, 17, 17, 0.52);
       line-height: 1.2;
       margin-top: 1px;
     }
@@ -288,12 +309,12 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 1.35rem;
-      height: 1.35rem;
-      margin-left: 0.25rem;
+      width: 1.45rem;
+      height: 1.45rem;
+      margin-left: 0.35rem;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.08);
-      color: rgba(255, 255, 255, 0.6);
+      background: rgba(0, 0, 0, 0.06);
+      color: rgba(17, 17, 17, 0.5);
       cursor: pointer;
       border: none;
       transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
@@ -301,21 +322,24 @@
     }
 
     .lang-guide-close:hover {
-      background: rgba(255, 255, 255, 0.2);
-      color: #ffffff;
-      transform: scale(1.08);
+      background: rgba(0, 0, 0, 0.12);
+      color: #0a0a0a;
+      transform: scale(1.1);
     }
 
     @media (max-width: 480px) {
       .lang-guide-tip {
         right: -8px;
       }
+
       .lang-guide-arrow {
         right: 36px;
       }
+
       .lang-guide-title {
         font-size: 0.75rem;
       }
+
       .lang-guide-sub {
         font-size: 0.625rem;
       }
@@ -2512,7 +2536,8 @@
           <li>
             <button type="button" class="nav-item-btn" data-scroll-to="services" data-hover="nav:320:22"
               data-hover-target=".nav-item-inner">
-              <span class="nav-item-inner"><span data-i18n="nav_services">Services</span> <span class="nav-caret" aria-hidden="true">▾</span></span>
+              <span class="nav-item-inner"><span data-i18n="nav_services">Services</span> <span class="nav-caret"
+                  aria-hidden="true">▾</span></span>
             </button>
           </li>
           <li>
@@ -2556,10 +2581,12 @@
             <div class="lang-guide-arrow" aria-hidden="true"></div>
             <div class="lang-guide-body">
               <span class="lang-guide-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="12" cy="12" r="10"></circle>
                   <line x1="2" y1="12" x2="22" y2="12"></line>
-                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                  </path>
                 </svg>
               </span>
               <div class="lang-guide-text">
@@ -2567,7 +2594,8 @@
                 <p class="lang-guide-sub">Switch language here</p>
               </div>
               <button type="button" id="lang-guide-close" class="lang-guide-close" aria-label="Dismiss guide">
-                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <line x1="18" y1="6" x2="6" y2="18"></line>
                   <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
@@ -2610,10 +2638,13 @@
           </div>
 
           <h1 id="hero-h1" class="hero-h1" data-line-reveal="hero" data-delay="250" data-stagger="120">
-            <span class="reveal-line-mask"><span class="reveal-line-inner" style="transition-delay:0ms" data-i18n="hero_h1_1">You can build
+            <span class="reveal-line-mask"><span class="reveal-line-inner" style="transition-delay:0ms"
+                data-i18n="hero_h1_1">You can build
               </span></span>
-            <span class="reveal-line-mask"><span class="reveal-line-inner" style="transition-delay:120ms" data-i18n="hero_h1_2">Online Business</span></span>
-            <span class="reveal-line-mask"><span class="reveal-line-inner" style="transition-delay:240ms" data-i18n="hero_h1_3">form Anyhere</span></span>
+            <span class="reveal-line-mask"><span class="reveal-line-inner" style="transition-delay:120ms"
+                data-i18n="hero_h1_2">Online Business</span></span>
+            <span class="reveal-line-mask"><span class="reveal-line-inner" style="transition-delay:240ms"
+                data-i18n="hero_h1_3">form Anyhere</span></span>
           </h1>
 
           <!-- <div class="hero-rating" data-reveal="hero" data-delay="650" data-y="12" data-tension="210"
@@ -2735,7 +2766,8 @@
         data-friction="26">
         <span data-i18n="hero_status_start">START SINCE 8 March 2026</span>
         <span class="statusbar-center" data-i18n="hero_status_learn">Not Knowledge just Lerning by doing</span>
-        <span class="statusbar-right"><span data-i18n="hero_status_scroll">Scroll to explore</span> <span aria-hidden="true">↓</span></span>
+        <span class="statusbar-right"><span data-i18n="hero_status_scroll">Scroll to explore</span> <span
+            aria-hidden="true">↓</span></span>
       </div>
     </section>
 
@@ -2826,7 +2858,8 @@
           <div class="create-tile create-tile--light" data-hover="scale:1.03:300:18" data-i18n="create_we">We</div>
         </li>
         <li class="create-item" data-reveal="scroll" data-delay="120" data-y="28" data-tension="200" data-friction="22">
-          <div class="create-tile create-tile--accent" data-hover="scale:1.03:300:18" data-i18n="create_build">Build</div>
+          <div class="create-tile create-tile--accent" data-hover="scale:1.03:300:18" data-i18n="create_build">Build
+          </div>
         </li>
         <li class="create-item" data-reveal="scroll" data-delay="240" data-y="28" data-tension="200" data-friction="22">
           <div class="create-tile create-tile--dark" data-hover="scale:1.03:300:18" aria-label="Arrow right">
@@ -2836,7 +2869,8 @@
           </div>
         </li>
         <li class="create-item" data-reveal="scroll" data-delay="360" data-y="28" data-tension="200" data-friction="22">
-          <div class="create-tile create-tile--ghost" data-hover="scale:1.03:300:18" data-i18n="create_together">Together</div>
+          <div class="create-tile create-tile--ghost" data-hover="scale:1.03:300:18" data-i18n="create_together">
+            Together</div>
         </li>
       </ul>
     </section>
@@ -2853,7 +2887,8 @@
           </div>
 
           <h2 class="portfolio-h2" data-line-reveal="scroll" data-delay="120">
-            <span class="reveal-line-mask"><span class="reveal-line-inner" style="transition-delay:120ms" data-i18n="portfolio_title">Who I am?</span></span>
+            <span class="reveal-line-mask"><span class="reveal-line-inner" style="transition-delay:120ms"
+                data-i18n="portfolio_title">Who I am?</span></span>
           </h2>
         </div>
 
@@ -2880,7 +2915,8 @@
                 </div>
                 <div class="portfolio-card-bottom">
                   <h3 class="portfolio-card-title" data-i18n="port_1_title">DPU | Dhurakijpandit</h3>
-                  <p class="portfolio-card-desc" data-i18n="port_1_desc">I am currently an undergraduate student, belonging to the 2025.</p>
+                  <p class="portfolio-card-desc" data-i18n="port_1_desc">I am currently an undergraduate student,
+                    belonging to the 2025.</p>
                   <div class="portfolio-card-tags">
                     <span class="tag-chip" data-i18n="port_1_t1">Computer Engineering</span>
                     <span class="tag-chip" data-i18n="port_1_t2">Programing</span>
@@ -2913,7 +2949,8 @@
                 </div>
                 <div class="portfolio-card-bottom">
                   <h3 class="portfolio-card-title" data-i18n="port_2_title">Online Business</h3>
-                  <p class="portfolio-card-desc" data-i18n="port_2_desc">I built an online business going from not having knowledge.</p>
+                  <p class="portfolio-card-desc" data-i18n="port_2_desc">I built an online business going from not
+                    having knowledge.</p>
                   <div class="portfolio-card-tags">
                     <span class="tag-chip" data-i18n="port_2_t1">Online Business</span>
                     <span class="tag-chip" data-i18n="port_2_t2">Content creator</span>
@@ -2946,7 +2983,8 @@
                 </div>
                 <div class="portfolio-card-bottom">
                   <h3 class="portfolio-card-title" data-i18n="port_3_title">Cashflow Workshop</h3>
-                  <p class="portfolio-card-desc" data-i18n="port_3_desc">Rich Dad Poor dad the greated of financial book You can understand How to Build Passive income in 2 hour.</p>
+                  <p class="portfolio-card-desc" data-i18n="port_3_desc">Rich Dad Poor dad the greated of financial book
+                    You can understand How to Build Passive income in 2 hour.</p>
                   <div class="portfolio-card-tags">
                     <span class="tag-chip" data-i18n="port_3_t1">Master of Cashflow</span>
                     <span class="tag-chip" data-i18n="port_3_t2">Financial Workshop</span>
@@ -2978,7 +3016,8 @@
                 </div>
                 <div class="portfolio-card-bottom">
                   <h3 class="portfolio-card-title" data-i18n="port_4_title">Health&Wellness</h3>
-                  <p class="portfolio-card-desc" data-i18n="port_4_desc">Professional advice on weight loss Learn directly from Professional experts.</p>
+                  <p class="portfolio-card-desc" data-i18n="port_4_desc">Professional advice on weight loss Learn
+                    directly from Professional experts.</p>
                   <div class="portfolio-card-tags">
                     <span class="tag-chip" data-i18n="port_4_t1">Wellness</span>
                     <span class="tag-chip" data-i18n="port_4_t2">Longivity</span>
@@ -3003,7 +3042,8 @@
         </div>
 
         <h2 class="services-h2" data-line-reveal="scroll" data-delay="120">
-          <span class="reveal-line-mask"><span class="reveal-line-inner" style="transition-delay:120ms" data-i18n="services_title">What we do best</span></span>
+          <span class="reveal-line-mask"><span class="reveal-line-inner" style="transition-delay:120ms"
+              data-i18n="services_title">What we do best</span></span>
         </h2>
 
         <ul>
@@ -3012,7 +3052,7 @@
             <a href="#services" class="service-link" data-hover="service-row">
               <span class="service-index">01</span>
               <h3 class="service-title" data-i18n="service_1_title">Content Creator</h3>
-              <p class="service-desc" data-i18n="service_1_desc">Scalable web &amp; mobile products built to last.</p>
+              <p class="service-desc" data-i18n="service_1_desc">Bulid Your Brand &amp; Form Organic Content.</p>
               <span class="service-badge">
                 <svg class="icon" aria-hidden="true">
                   <use href="#icon-arrow-up-right" />
@@ -3024,8 +3064,8 @@
             data-friction="24">
             <a href="#services" class="service-link" data-hover="service-row">
               <span class="service-index">02</span>
-              <h3 class="service-title" data-i18n="service_2_title">Find client</h3>
-              <p class="service-desc" data-i18n="service_2_desc">Interfaces that feel effortless and look sharp.</p>
+              <h3 class="service-title" data-i18n="service_2_title">Weight Loss</h3>
+              <p class="service-desc" data-i18n="service_2_desc">Lose weight by adjusting your meals.</p>
               <span class="service-badge">
                 <svg class="icon" aria-hidden="true">
                   <use href="#icon-arrow-up-right" />
@@ -3074,7 +3114,8 @@
           </span>
 
           <h2 class="stats-h2" data-line-reveal="scroll" data-delay="120">
-            <span class="reveal-line-mask"><span class="reveal-line-inner" style="transition-delay:120ms" data-i18n="stats_title">Proof in the result, not the words.</span></span>
+            <span class="reveal-line-mask"><span class="reveal-line-inner" style="transition-delay:120ms"
+                data-i18n="stats_title">Proof in the result, not the words.</span></span>
           </h2>
 
           <ul class="stats-grid">
@@ -3105,8 +3146,10 @@
     <div class="shell footer-inner">
       <div class="footer-cta-row">
         <h2 class="footer-h2" data-line-reveal="scroll" data-delay="0" data-stagger="100">
-          <span class="reveal-line-mask"><span class="reveal-line-inner" style="transition-delay:0ms" data-i18n="footer_title_1">Have a project in mind?</span></span>
-          <span class="reveal-line-mask"><span class="reveal-line-inner" style="transition-delay:100ms" data-i18n="footer_title_2">Let's get to work.</span></span>
+          <span class="reveal-line-mask"><span class="reveal-line-inner" style="transition-delay:0ms"
+              data-i18n="footer_title_1">Have a project in mind?</span></span>
+          <span class="reveal-line-mask"><span class="reveal-line-inner" style="transition-delay:100ms"
+              data-i18n="footer_title_2">Let's get to work.</span></span>
         </h2>
 
         <button type="button" class="pill-btn pill-btn--light pill-btn--with-arrow" data-open-modal
@@ -3132,16 +3175,21 @@
             </svg>
             <span>Getup</span>
           </div>
-          <p class="footer-tagline" data-i18n="footer_tagline">An independent studio crafting brands, products, and the systems that connect them.</p>
+          <p class="footer-tagline" data-i18n="footer_tagline">An independent studio crafting brands, products, and the
+            systems that connect them.</p>
         </div>
 
         <div>
           <h3 class="footer-col-title" data-i18n="footer_col_company">Company</h3>
           <ul class="footer-col-list">
-            <li><a href="#about" class="animated-link" data-scroll-to="about" data-hover="link:4:0.65:320:22"><span class="animated-link-inner" data-i18n="footer_link_about">About</span></a></li>
-            <li><a href="#careers" class="animated-link" data-scroll-to="careers" data-hover="link:4:0.65:320:22"><span class="animated-link-inner" data-i18n="footer_link_careers">Careers</span></a></li>
-            <li><a href="#partners" class="animated-link" data-hover="link:4:0.65:320:22"><span class="animated-link-inner" data-i18n="footer_link_partners">Partners</span></a></li>
-            <li><a href="#contact" class="animated-link" data-open-modal data-hover="link:4:0.65:320:22"><span class="animated-link-inner" data-i18n="footer_link_contact">Contact</span></a></li>
+            <li><a href="#about" class="animated-link" data-scroll-to="about" data-hover="link:4:0.65:320:22"><span
+                  class="animated-link-inner" data-i18n="footer_link_about">About</span></a></li>
+            <li><a href="#careers" class="animated-link" data-scroll-to="careers" data-hover="link:4:0.65:320:22"><span
+                  class="animated-link-inner" data-i18n="footer_link_careers">Careers</span></a></li>
+            <li><a href="#partners" class="animated-link" data-hover="link:4:0.65:320:22"><span
+                  class="animated-link-inner" data-i18n="footer_link_partners">Partners</span></a></li>
+            <li><a href="#contact" class="animated-link" data-open-modal data-hover="link:4:0.65:320:22"><span
+                  class="animated-link-inner" data-i18n="footer_link_contact">Contact</span></a></li>
           </ul>
         </div>
 
@@ -3149,13 +3197,15 @@
           <h3 class="footer-col-title" data-i18n="footer_col_services">Services</h3>
           <ul class="footer-col-list">
             <li><a href="#development" class="animated-link" data-scroll-to="services"
-                data-hover="link:4:0.65:320:22"><span class="animated-link-inner" data-i18n="footer_link_dev">Development</span></a></li>
+                data-hover="link:4:0.65:320:22"><span class="animated-link-inner"
+                  data-i18n="footer_link_dev">Development</span></a></li>
             <li><a href="#design" class="animated-link" data-scroll-to="services" data-hover="link:4:0.65:320:22"><span
                   class="animated-link-inner">Design</span></a></li>
             <li><a href="#qa" class="animated-link" data-scroll-to="services" data-hover="link:4:0.65:320:22"><span
                   class="animated-link-inner">Quality Assurance</span></a></li>
             <li><a href="#consulting" class="animated-link" data-scroll-to="services"
-                data-hover="link:4:0.65:320:22"><span class="animated-link-inner" data-i18n="footer_link_consult">Consulting</span></a></li>
+                data-hover="link:4:0.65:320:22"><span class="animated-link-inner"
+                  data-i18n="footer_link_consult">Consulting</span></a></li>
           </ul>
         </div>
 
@@ -3263,7 +3313,8 @@
 
     <div class="shell nav-overlay-bottom">
       <span id="nav-overlay-clock">Local time — 9:41am</span>
-      <button type="button" id="nav-start-project" class="nav-overlay-cta" data-i18n="nav_overlay_start">Start a project →</button>
+      <button type="button" id="nav-start-project" class="nav-overlay-cta" data-i18n="nav_overlay_start">Start a project
+        →</button>
     </div>
   </div>
 
@@ -3288,18 +3339,21 @@
         <form id="request-form" class="modal-form">
           <label class="modal-field">
             <span class="modal-label" data-i18n="modal_label_name">Name</span>
-            <input type="text" name="name" class="modal-control" required placeholder="Your name" data-i18n-placeholder="modal_placeholder_name" />
+            <input type="text" name="name" class="modal-control" required placeholder="Your name"
+              data-i18n-placeholder="modal_placeholder_name" />
           </label>
 
           <label class="modal-field">
             <span class="modal-label" data-i18n="modal_label_email">Email</span>
-            <input type="email" name="email" class="modal-control" required placeholder="you@company.com" data-i18n-placeholder="modal_placeholder_email" />
+            <input type="email" name="email" class="modal-control" required placeholder="you@company.com"
+              data-i18n-placeholder="modal_placeholder_email" />
           </label>
 
           <label class="modal-field">
             <span class="modal-label" data-i18n="modal_label_project">Project</span>
             <textarea name="project" rows="4" class="modal-control" required
-              placeholder="A few words about your project, timeline, and budget." data-i18n-placeholder="modal_placeholder_project"></textarea>
+              placeholder="A few words about your project, timeline, and budget."
+              data-i18n-placeholder="modal_placeholder_project"></textarea>
           </label>
 
           <div class="modal-bottom">
@@ -3328,7 +3382,8 @@
           </svg>
         </div>
         <h2 class="modal-success-h2" data-i18n="modal_success_title">Request received</h2>
-        <p class="modal-success-p" data-i18n="modal_success_desc">Thanks for reaching out — we'll get back to you within one business day.</p>
+        <p class="modal-success-p" data-i18n="modal_success_desc">Thanks for reaching out — we'll get back to you within
+          one business day.</p>
         <button type="button" id="modal-success-close" class="pill-btn pill-btn--dark pill-btn--no-arrow"
           data-hover="scale:1.04:320:18" data-hover-target=".pill-btn-scale">
           <span class="pill-btn-scale">
@@ -4990,7 +5045,7 @@
       currentLang = lang;
       try {
         localStorage.setItem('getup_lang', lang);
-      } catch (e) {}
+      } catch (e) { }
       document.documentElement.lang = lang;
 
       // Update active toggle buttons
@@ -5080,7 +5135,7 @@
     try {
       const initialLang = localStorage.getItem('getup_lang') || 'en';
       setLanguage(initialLang);
-    } catch(e) {
+    } catch (e) {
       setLanguage('en');
     }
 
@@ -5093,7 +5148,12 @@
       const tipBody = tip ? tip.querySelector('.lang-guide-body') : null;
       if (!tip) return;
 
-      const STORAGE_KEY = 'getup_lang_guide_seen';
+      // Clear any old blocking key
+      try {
+        localStorage.removeItem('getup_lang_guide_seen');
+      } catch (e) {}
+
+      const STORAGE_KEY = 'getup_lang_tip_v3';
       let hasSeen = false;
       try {
         hasSeen = localStorage.getItem(STORAGE_KEY) === 'true';
@@ -5111,7 +5171,7 @@
           localStorage.setItem(STORAGE_KEY, 'true');
         } catch (e) {}
         setTimeout(() => {
-          if (tip && tip.parentNode) tip.remove();
+          if (tip) tip.style.display = 'none';
         }, 400);
       }
 
@@ -5121,10 +5181,11 @@
         tip.setAttribute('aria-hidden', 'false');
       }
 
-      // Show after intro ready gate
+      // Show promptly once intro is ready (or via fallback)
       onIntroReady(() => {
-        setTimeout(showTip, 900);
+        setTimeout(showTip, 400);
       });
+      setTimeout(showTip, 1400);
 
       // Dismiss on close button click
       if (closeBtn) {
@@ -5150,15 +5211,6 @@
           dismissTip();
         });
       });
-
-      // Auto-dismiss on deep scroll
-      let scrollDismissed = false;
-      window.addEventListener('scroll', () => {
-        if (!scrollDismissed && window.scrollY > 220) {
-          scrollDismissed = true;
-          dismissTip();
-        }
-      }, { passive: true });
     }
 
     initLangGuideTip();
