@@ -984,26 +984,35 @@
       }
     }
 
-    .about-bg-globe {
+    .about-bg-globe-canvas {
       position: absolute;
       left: -1rem;
       top: 50%;
       transform: translateY(-50%);
-      font-size: 12rem;
-      color: rgba(17, 17, 17, 0.1);
-      pointer-events: none;
+      width: 16rem;
+      height: 16rem;
+      pointer-events: auto;
+      cursor: grab;
+      touch-action: none;
+      z-index: 1;
+    }
+
+    .about-bg-globe-canvas:active {
+      cursor: grabbing;
     }
 
     @media (min-width: 640px) {
-      .about-bg-globe {
-        font-size: 16rem;
+      .about-bg-globe-canvas {
+        width: 18rem;
+        height: 18rem;
       }
     }
 
     @media (min-width: 1024px) {
-      .about-bg-globe {
+      .about-bg-globe-canvas {
         left: -1.5rem;
-        font-size: 20rem;
+        width: 20rem;
+        height: 20rem;
       }
     }
 
@@ -2447,11 +2456,9 @@
     <section id="about" class="about-section">
       <div class="shell about-grid">
         <div class="about-left">
-          <svg class="icon about-bg-globe" aria-hidden="true">
-            <use href="#icon-globe" />
-          </svg>
+          <canvas id="about-globe-canvas" class="about-bg-globe-canvas" aria-label="Interactive 3D Globe"></canvas>
 
-          <div style="position:relative" data-reveal="scroll" data-delay="0" data-y="10" data-tension="210"
+          <div style="position:relative; z-index:2; pointer-events:none;" data-reveal="scroll" data-delay="0" data-y="10" data-tension="210"
             data-friction="26">
             <span class="eyebrow eyebrow--dark">
               <span class="eyebrow-dot" aria-hidden="true"></span>
@@ -2459,7 +2466,7 @@
             </span>
           </div>
 
-          <div class="about-globe-note" data-reveal="scroll" data-delay="100" data-y="12" data-tension="210"
+          <div class="about-globe-note" style="position:relative; z-index:2; pointer-events:none;" data-reveal="scroll" data-delay="100" data-y="12" data-tension="210"
             data-friction="26">
             <svg class="icon" aria-hidden="true">
               <use href="#icon-globe" />
@@ -3926,6 +3933,210 @@
         else if (menuOpen) closeNavMenu();
       }
     });
+
+    /* ==========================================================================
+       16. Interactive 3D Wireframe Globe (About Section)
+       ========================================================================== */
+    function initAboutGlobe() {
+      const canvas = document.getElementById('about-globe-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      let width = 0, height = 0, dpr = 1, radius = 0;
+      function resize() {
+        const rect = canvas.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0) return;
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        width = rect.width;
+        height = rect.height;
+        canvas.width = Math.round(width * dpr);
+        canvas.height = Math.round(height * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        radius = Math.min(width, height) * 0.44;
+      }
+      resize();
+      window.addEventListener('resize', resize, { passive: true });
+
+      let rotX = 0.15;
+      let rotY = 0.45;
+      let targetRotX = 0.15;
+      let targetRotY = 0.45;
+      let velX = 0;
+      let velY = 0.003;
+      let isDragging = false;
+      let lastMouseX = 0;
+      let lastMouseY = 0;
+      let isVisible = true;
+      let rafId = null;
+
+      canvas.addEventListener('pointerdown', (e) => {
+        isDragging = true;
+        lastMouseX = e.clientX;
+        lastMouseY = e.clientY;
+        canvas.setPointerCapture(e.pointerId);
+      });
+
+      window.addEventListener('pointermove', (e) => {
+        if (isDragging) {
+          const dx = e.clientX - lastMouseX;
+          const dy = e.clientY - lastMouseY;
+          velY = dx * 0.005;
+          velX = dy * 0.005;
+          targetRotY += velY;
+          targetRotX += velX;
+          lastMouseX = e.clientX;
+          lastMouseY = e.clientY;
+        } else if (isVisible) {
+          const rect = canvas.getBoundingClientRect();
+          const cx = rect.left + rect.width / 2;
+          const cy = rect.top + rect.height / 2;
+          const nx = (e.clientX - cx) / window.innerWidth;
+          const ny = (e.clientY - cy) / window.innerHeight;
+          targetRotX = Math.max(-0.65, Math.min(0.65, ny * 0.75));
+          targetRotY += nx * 0.006;
+        }
+      }, { passive: true });
+
+      window.addEventListener('pointerup', () => {
+        isDragging = false;
+      }, { passive: true });
+
+      function project(x, y, z, rx, ry) {
+        const cosY = Math.cos(ry), sinY = Math.sin(ry);
+        const x1 = x * cosY + z * sinY;
+        const y1 = y;
+        const z1 = -x * sinY + z * cosY;
+
+        const cosX = Math.cos(rx), sinX = Math.sin(rx);
+        const x2 = x1;
+        const y2 = y1 * cosX - z1 * sinX;
+        const z2 = y1 * sinX + z1 * cosX;
+
+        return {
+          x: width / 2 + x2,
+          y: height / 2 + y2,
+          z: z2
+        };
+      }
+
+      const latitudes = [0];
+      const longitudes = [0, 60, 120];
+
+      function render() {
+        if (!isVisible) {
+          rafId = null;
+          return;
+        }
+
+        if (!isDragging) {
+          targetRotY += 0.0025; // ambient rotation
+          velX *= 0.94;
+          velY *= 0.94;
+          targetRotX += velX;
+          targetRotY += velY;
+        }
+
+        rotX += (targetRotX - rotX) * 0.06;
+        rotY += (targetRotY - rotY) * 0.06;
+        rotX = Math.max(-0.7, Math.min(0.7, rotX));
+
+        ctx.clearRect(0, 0, width, height);
+
+        const cx = width / 2;
+        const cy = height / 2;
+
+        const outerLineWidth = Math.max(8, radius * 0.095);
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(17, 17, 17, 0.12)';
+        ctx.lineWidth = outerLineWidth;
+        ctx.stroke();
+
+        const steps = 120;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+
+        function strokeRing(getPoint) {
+          const pts = [];
+          for (let i = 0; i <= steps; i++) {
+            const t = (i / steps) * Math.PI * 2;
+            const p3 = getPoint(t);
+            pts.push(project(p3.x, p3.y, p3.z, rotX, rotY));
+          }
+
+          function drawSegments(isMatch, color, lw) {
+            ctx.strokeStyle = color;
+            ctx.lineWidth = lw;
+            let inPath = false;
+            for (let i = 0; i < steps; i++) {
+              const pA = pts[i];
+              const pB = pts[i + 1];
+              if (isMatch((pA.z + pB.z) / 2)) {
+                if (!inPath) {
+                  ctx.beginPath();
+                  ctx.moveTo(pA.x, pA.y);
+                  inPath = true;
+                }
+                ctx.lineTo(pB.x, pB.y);
+              } else if (inPath) {
+                ctx.stroke();
+                inPath = false;
+              }
+            }
+            if (inPath) ctx.stroke();
+          }
+
+          // Back arc (z < 0)
+          drawSegments(z => z < 0, 'rgba(17, 17, 17, 0.045)', outerLineWidth * 0.72);
+          // Front arc (z >= 0)
+          drawSegments(z => z >= 0, 'rgba(17, 17, 17, 0.12)', outerLineWidth * 0.95);
+        }
+
+        latitudes.forEach(latDeg => {
+          const phi = (latDeg * Math.PI) / 180;
+          const r = radius * Math.cos(phi);
+          const y = -radius * Math.sin(phi);
+          strokeRing((t) => ({
+            x: r * Math.cos(t),
+            y: y,
+            z: r * Math.sin(t)
+          }));
+        });
+
+        longitudes.forEach(lonDeg => {
+          const lambda = (lonDeg * Math.PI) / 180;
+          strokeRing((t) => {
+            const cosT = Math.cos(t);
+            const sinT = Math.sin(t);
+            return {
+              x: radius * cosT * Math.cos(lambda),
+              y: -radius * sinT,
+              z: radius * cosT * Math.sin(lambda)
+            };
+          });
+        });
+
+        rafId = requestAnimationFrame(render);
+      }
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            isVisible = entry.isIntersecting;
+            if (isVisible && !rafId) {
+              resize();
+              rafId = requestAnimationFrame(render);
+            }
+          });
+        }, { threshold: 0.05 });
+        observer.observe(canvas);
+      } else {
+        rafId = requestAnimationFrame(render);
+      }
+    }
+
+    initAboutGlobe();
   </script>
 </body>
 
