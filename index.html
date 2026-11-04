@@ -112,6 +112,12 @@
       margin-bottom: -0.22em;
     }
 
+    .lang-switch-wrapper {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+
     .lang-switch {
       display: inline-flex;
       align-items: center;
@@ -180,6 +186,141 @@
       background: #ffffff;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
     }
+
+    /* Language Switcher Guide Tip */
+    .lang-guide-tip {
+      position: absolute;
+      top: calc(100% + 12px);
+      right: 0;
+      z-index: 100;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(8px) scale(0.96);
+      transform-origin: top right;
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.22))
+              drop-shadow(0 4px 10px rgba(0, 0, 0, 0.12));
+    }
+
+    .lang-guide-tip.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+      animation: langTipFloat 3.2s ease-in-out infinite 0.4s;
+    }
+
+    @keyframes langTipFloat {
+      0%, 100% {
+        transform: translateY(0) scale(1);
+      }
+      50% {
+        transform: translateY(-4px) scale(1);
+      }
+    }
+
+    .lang-guide-arrow {
+      position: absolute;
+      top: -5px;
+      right: 28px;
+      width: 10px;
+      height: 10px;
+      background: #0a0a0a;
+      border-left: 1px solid rgba(255, 255, 255, 0.15);
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      transform: rotate(45deg);
+      border-radius: 2px 0 0 0;
+      z-index: 2;
+    }
+
+    .lang-guide-body {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      background: #0a0a0a;
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 1rem;
+      padding: 0.65rem 0.85rem 0.65rem 0.75rem;
+      white-space: nowrap;
+      user-select: none;
+      cursor: pointer;
+    }
+
+    .lang-guide-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.75rem;
+      height: 1.75rem;
+      border-radius: 0.625rem;
+      background: rgba(255, 255, 255, 0.1);
+      color: #cf8047;
+      flex-shrink: 0;
+    }
+
+    .lang-guide-text {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .lang-guide-title {
+      font-family: 'Prompt', 'Onest', sans-serif;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: #ffffff;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+
+    .lang-guide-sub {
+      font-family: 'Onest', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.55);
+      line-height: 1.2;
+      margin-top: 1px;
+    }
+
+    .lang-guide-close {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.35rem;
+      height: 1.35rem;
+      margin-left: 0.25rem;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.6);
+      cursor: pointer;
+      border: none;
+      transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .lang-guide-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      transform: scale(1.08);
+    }
+
+    @media (max-width: 480px) {
+      .lang-guide-tip {
+        right: -8px;
+      }
+      .lang-guide-arrow {
+        right: 36px;
+      }
+      .lang-guide-title {
+        font-size: 0.75rem;
+      }
+      .lang-guide-sub {
+        font-size: 0.625rem;
+      }
+    }
+
 
     /* Adaptive Grid */
     @media (max-width: 1920px) {
@@ -2403,10 +2544,36 @@
           <span id="clock-date" class="clock-date">12 March, 2025</span>
         </div>
 
-        <!-- Language Switcher Toggle -->
-        <div class="lang-switch" role="group" aria-label="Language switcher">
-          <button type="button" class="lang-btn is-active" data-lang="en" aria-pressed="true">EN</button>
-          <button type="button" class="lang-btn" data-lang="th" aria-pressed="false">TH</button>
+        <!-- Language Switcher Toggle & Guide Tip -->
+        <div class="lang-switch-wrapper">
+          <div class="lang-switch" role="group" aria-label="Language switcher">
+            <button type="button" class="lang-btn is-active" data-lang="en" aria-pressed="true">EN</button>
+            <button type="button" class="lang-btn" data-lang="th" aria-pressed="false">TH</button>
+          </div>
+
+          <!-- First-time Guide Tip -->
+          <aside id="lang-guide-tip" class="lang-guide-tip" role="tooltip" aria-hidden="true">
+            <div class="lang-guide-arrow" aria-hidden="true"></div>
+            <div class="lang-guide-body">
+              <span class="lang-guide-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="2" y1="12" x2="22" y2="12"></line>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                </svg>
+              </span>
+              <div class="lang-guide-text">
+                <p class="lang-guide-title">คุณสามารถเปลี่ยนภาษาได้ที่นี่</p>
+                <p class="lang-guide-sub">Switch language here</p>
+              </div>
+              <button type="button" id="lang-guide-close" class="lang-guide-close" aria-label="Dismiss guide">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+          </aside>
         </div>
 
         <button type="button" id="open-menu-btn" class="menu-btn" data-hover="scale:1.05:320:18"
@@ -4916,6 +5083,85 @@
     } catch(e) {
       setLanguage('en');
     }
+
+    /* ==========================================================================
+       Language Switcher First-Time Guide Tip
+       ========================================================================== */
+    function initLangGuideTip() {
+      const tip = document.getElementById('lang-guide-tip');
+      const closeBtn = document.getElementById('lang-guide-close');
+      const tipBody = tip ? tip.querySelector('.lang-guide-body') : null;
+      if (!tip) return;
+
+      const STORAGE_KEY = 'getup_lang_guide_seen';
+      let hasSeen = false;
+      try {
+        hasSeen = localStorage.getItem(STORAGE_KEY) === 'true';
+      } catch (e) {}
+
+      if (hasSeen) return;
+
+      let dismissed = false;
+      function dismissTip() {
+        if (dismissed) return;
+        dismissed = true;
+        tip.classList.remove('is-visible');
+        tip.setAttribute('aria-hidden', 'true');
+        try {
+          localStorage.setItem(STORAGE_KEY, 'true');
+        } catch (e) {}
+        setTimeout(() => {
+          if (tip && tip.parentNode) tip.remove();
+        }, 400);
+      }
+
+      function showTip() {
+        if (dismissed) return;
+        tip.classList.add('is-visible');
+        tip.setAttribute('aria-hidden', 'false');
+      }
+
+      // Show after intro ready gate
+      onIntroReady(() => {
+        setTimeout(showTip, 900);
+      });
+
+      // Dismiss on close button click
+      if (closeBtn) {
+        closeBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          dismissTip();
+        });
+      }
+
+      // If user clicks on the tip body itself, toggle language and dismiss
+      if (tipBody) {
+        tipBody.addEventListener('click', (e) => {
+          if (e.target.closest('#lang-guide-close')) return;
+          const nextLang = currentLang === 'en' ? 'th' : 'en';
+          setLanguage(nextLang);
+          dismissTip();
+        });
+      }
+
+      // Also dismiss automatically when user clicks any language button
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          dismissTip();
+        });
+      });
+
+      // Auto-dismiss on deep scroll
+      let scrollDismissed = false;
+      window.addEventListener('scroll', () => {
+        if (!scrollDismissed && window.scrollY > 220) {
+          scrollDismissed = true;
+          dismissTip();
+        }
+      }, { passive: true });
+    }
+
+    initLangGuideTip();
 
   </script>
 </body>
