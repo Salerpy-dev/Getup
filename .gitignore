@@ -1,0 +1,9 @@
+# Ignore nested unrelated folder and local Windows helper scripts
+adk-recipes-main/
+*.bat
+*.py
+*.pyw
+hero-original.jpg
+Weig loss.png
+.DS_Store
+Thumbs.db
