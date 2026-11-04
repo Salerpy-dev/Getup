@@ -10,7 +10,7 @@
   <link rel="icon" href="./favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --background: #ffffff;
@@ -88,6 +88,97 @@
     :focus-visible {
       outline: 2px solid #b15f2c;
       outline-offset: 2px;
+    }
+
+    
+    /* Language Switcher & Thai Typography Support */
+    html[lang="th"] body {
+      font-family: 'Prompt', 'Onest', sans-serif;
+    }
+
+    html[lang="th"] .hero-h1 {
+      line-height: 1.18;
+      letter-spacing: -0.01em;
+    }
+
+    html[lang="th"] .about-h2 {
+      line-height: 1.35;
+    }
+
+    html[lang="th"] .reveal-line-mask {
+      padding-top: 0.15em;
+      margin-top: -0.15em;
+      padding-bottom: 0.22em;
+      margin-bottom: -0.22em;
+    }
+
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      position: relative;
+      background: rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(230, 229, 226, 0.85);
+      border-radius: 0.875rem;
+      padding: 0.2rem;
+      gap: 0.15rem;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+      user-select: none;
+    }
+
+    .lang-switch:hover {
+      background: rgba(255, 255, 255, 0.75);
+      border-color: rgba(200, 199, 196, 0.9);
+    }
+
+    .lang-btn {
+      position: relative;
+      z-index: 1;
+      padding: 0.35rem 0.65rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      border-radius: 0.65rem;
+      color: rgba(17, 17, 17, 0.45);
+      cursor: pointer;
+      line-height: 1;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .lang-btn:hover {
+      color: rgba(17, 17, 17, 0.85);
+    }
+
+    .lang-btn.is-active {
+      color: #ffffff;
+      background: #0a0a0a;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    }
+
+    .lang-switch--overlay {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .lang-switch--overlay:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .lang-switch--overlay .lang-btn {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .lang-switch--overlay .lang-btn:hover {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .lang-switch--overlay .lang-btn.is-active {
+      color: #0a0a0a;
+      background: #ffffff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
     }
 
     /* Adaptive Grid */
@@ -2268,37 +2359,37 @@
           <li>
             <button type="button" class="nav-item-btn" aria-current="page" data-scroll-to="home" data-hover="nav:320:22"
               data-hover-target=".nav-item-inner">
-              <span class="nav-item-inner">Home</span>
+              <span class="nav-item-inner" data-i18n="nav_home">Home</span>
             </button>
           </li>
           <li>
             <button type="button" class="nav-item-btn" data-scroll-to="works" data-hover="nav:320:22"
               data-hover-target=".nav-item-inner">
-              <span class="nav-item-inner">Introduction</span>
+              <span class="nav-item-inner" data-i18n="nav_intro">Introduction</span>
             </button>
           </li>
           <li>
             <button type="button" class="nav-item-btn" data-scroll-to="services" data-hover="nav:320:22"
               data-hover-target=".nav-item-inner">
-              <span class="nav-item-inner">Services <span class="nav-caret" aria-hidden="true">▾</span></span>
+              <span class="nav-item-inner"><span data-i18n="nav_services">Services</span> <span class="nav-caret" aria-hidden="true">▾</span></span>
             </button>
           </li>
           <li>
             <button type="button" class="nav-item-btn" data-scroll-to="about" data-hover="nav:320:22"
               data-hover-target=".nav-item-inner">
-              <span class="nav-item-inner">Solution</span>
+              <span class="nav-item-inner" data-i18n="nav_solution">Solution</span>
             </button>
           </li>
           <li>
             <button type="button" class="nav-item-btn" data-scroll-to="About me" data-hover="nav:320:22"
               data-hover-target=".nav-item-inner">
-              <span class="nav-item-inner">About me</span>
+              <span class="nav-item-inner" data-i18n="nav_about">About me</span>
             </button>
           </li>
           <li>
             <button type="button" class="nav-item-btn" data-open-modal data-hover="nav:320:22"
               data-hover-target=".nav-item-inner">
-              <span class="nav-item-inner">About me</span>
+              <span class="nav-item-inner" data-i18n="nav_about">About me</span>
             </button>
           </li>
         </ul>
@@ -2306,10 +2397,16 @@
 
       <div class="header-right">
         <div class="clock-chip" aria-label="Local time">
-          <span class="clock-label">Local time</span>
+          <span class="clock-label" data-i18n="clock_label">Local time</span>
           <span id="clock-time" class="clock-time">9:41am</span>
           <span class="clock-sep" aria-hidden="true">•</span>
           <span id="clock-date" class="clock-date">12 March, 2025</span>
+        </div>
+
+        <!-- Language Switcher Toggle -->
+        <div class="lang-switch" role="group" aria-label="Language switcher">
+          <button type="button" class="lang-btn is-active" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" class="lang-btn" data-lang="th" aria-pressed="false">TH</button>
         </div>
 
         <button type="button" id="open-menu-btn" class="menu-btn" data-hover="scale:1.05:320:18"
@@ -2318,7 +2415,7 @@
             <svg class="icon" aria-hidden="true">
               <use href="#icon-grid" />
             </svg>
-            <span class="menu-btn-text">Menu</span>
+            <span class="menu-btn-text" data-i18n="menu_text">Menu</span>
           </span>
         </button>
       </div>
@@ -2341,17 +2438,15 @@
           <div data-reveal="hero" data-delay="200" data-y="10" data-tension="210" data-friction="26">
             <span class="eyebrow eyebrow--dark">
               <span class="eyebrow-dot" aria-hidden="true"></span>
-              <span>I can do ,You can do it.</span>
+              <span data-i18n="hero_eyebrow">I can do ,You can do it.</span>
             </span>
           </div>
 
           <h1 id="hero-h1" class="hero-h1" data-line-reveal="hero" data-delay="250" data-stagger="120">
-            <span class="reveal-line-mask"><span class="reveal-line-inner" style="transition-delay:0ms">You can build
+            <span class="reveal-line-mask"><span class="reveal-line-inner" style="transition-delay:0ms" data-i18n="hero_h1_1">You can build
               </span></span>
-            <span class="reveal-line-mask"><span class="reveal-line-inner" style="transition-delay:120ms">Online
-                Business</span></span>
-            <span class="reveal-line-mask"><span class="reveal-line-inner" style="transition-delay:240ms">form
-                Anyhere</span></span>
+            <span class="reveal-line-mask"><span class="reveal-line-inner" style="transition-delay:120ms" data-i18n="hero_h1_2">Online Business</span></span>
+            <span class="reveal-line-mask"><span class="reveal-line-inner" style="transition-delay:240ms" data-i18n="hero_h1_3">form Anyhere</span></span>
           </h1>
 
           <!-- <div class="hero-rating" data-reveal="hero" data-delay="650" data-y="12" data-tension="210"
@@ -2380,7 +2475,7 @@
             <button type="button" class="pill-btn pill-btn--dark pill-btn--with-arrow" data-open-modal
               data-hover="pill:right:320:18">
               <span class="pill-btn-scale">
-                <span>Let's Talk</span>
+                <span data-i18n="hero_cta_talk">Let's Talk</span>
                 <span class="pill-btn-badge">
                   <span class="pill-btn-arrow">
                     <svg class="icon" aria-hidden="true">
@@ -2394,7 +2489,7 @@
             <button type="button" class="pill-btn pill-btn--outline pill-btn--no-arrow" data-scroll-to="works"
               data-hover="scale:1.04:320:18" data-hover-target=".pill-btn-scale">
               <span class="pill-btn-scale">
-                <span>View Work</span>
+                <span data-i18n="hero_cta_work">View Work</span>
               </span>
             </button>
           </div>
@@ -2471,9 +2566,9 @@
 
       <div class="shell hero-statusbar" data-reveal="hero" data-delay="900" data-y="0" data-tension="210"
         data-friction="26">
-        <span>START SINCE 8 March 2026</span>
-        <span class="statusbar-center">Not Knowledge just Lerning by doing</span>
-        <span class="statusbar-right">Scroll to explore <span aria-hidden="true">↓</span></span>
+        <span data-i18n="hero_status_start">START SINCE 8 March 2026</span>
+        <span class="statusbar-center" data-i18n="hero_status_learn">Not Knowledge just Lerning by doing</span>
+        <span class="statusbar-right"><span data-i18n="hero_status_scroll">Scroll to explore</span> <span aria-hidden="true">↓</span></span>
       </div>
     </section>
 
@@ -2487,7 +2582,7 @@
             data-y="10" data-tension="210" data-friction="26">
             <span class="eyebrow eyebrow--dark">
               <span class="eyebrow-dot" aria-hidden="true"></span>
-              <span>The Studio</span>
+              <span data-i18n="about_eyebrow">The Studio</span>
             </span>
           </div>
 
@@ -2496,7 +2591,7 @@
             <svg class="icon" aria-hidden="true">
               <use href="#icon-globe" />
             </svg>
-            <span class="about-globe-note-text">Business can do everywhere.</span>
+            <span class="about-globe-note-text" data-i18n="about_globe_note">Business can do everywhere.</span>
           </div>
         </div>
 
@@ -2510,7 +2605,7 @@
           <div class="about-footer" data-reveal="scroll" data-delay="200" data-y="12" data-tension="210"
             data-friction="26">
             <div class="about-social-block">
-              <span class="about-social-label">Find us online</span>
+              <span class="about-social-label" data-i18n="about_social_label">Find us online</span>
               <div class="about-socials">
                 <!-- ใส่ลิงก์ Instagram ของคุณที่ href="..." ด้านล่างนี้ -->
                 <a href="https://www.instagram.com/YOUR_PROFILE" target="_blank" rel="noopener noreferrer"
@@ -2542,7 +2637,7 @@
             <a href="#about" class="pill-btn pill-btn--outline pill-btn--with-arrow" data-scroll-to="about"
               data-hover="pill:right:320:18">
               <span class="pill-btn-scale">
-                <span>About Us</span>
+                <span data-i18n="about_cta">About Us</span>
                 <span class="pill-btn-badge">
                   <span class="pill-btn-arrow">
                     <svg class="icon" aria-hidden="true">
@@ -2561,10 +2656,10 @@
     <section class="create-section" aria-label="We build better">
       <ul class="shell create-list">
         <li class="create-item" data-reveal="scroll" data-delay="0" data-y="28" data-tension="200" data-friction="22">
-          <div class="create-tile create-tile--light" data-hover="scale:1.03:300:18">We</div>
+          <div class="create-tile create-tile--light" data-hover="scale:1.03:300:18" data-i18n="create_we">We</div>
         </li>
         <li class="create-item" data-reveal="scroll" data-delay="120" data-y="28" data-tension="200" data-friction="22">
-          <div class="create-tile create-tile--accent" data-hover="scale:1.03:300:18">Build</div>
+          <div class="create-tile create-tile--accent" data-hover="scale:1.03:300:18" data-i18n="create_build">Build</div>
         </li>
         <li class="create-item" data-reveal="scroll" data-delay="240" data-y="28" data-tension="200" data-friction="22">
           <div class="create-tile create-tile--dark" data-hover="scale:1.03:300:18" aria-label="Arrow right">
@@ -2574,7 +2669,7 @@
           </div>
         </li>
         <li class="create-item" data-reveal="scroll" data-delay="360" data-y="28" data-tension="200" data-friction="22">
-          <div class="create-tile create-tile--ghost" data-hover="scale:1.03:300:18">Together</div>
+          <div class="create-tile create-tile--ghost" data-hover="scale:1.03:300:18" data-i18n="create_together">Together</div>
         </li>
       </ul>
     </section>
@@ -2586,13 +2681,12 @@
           <div data-reveal="scroll" data-delay="0" data-y="10" data-tension="210" data-friction="26">
             <span class="eyebrow eyebrow--dark eyebrow--pill">
               <span class="eyebrow-dot" aria-hidden="true"></span>
-              <span>Portfolio</span>
+              <span data-i18n="portfolio_eyebrow">Portfolio</span>
             </span>
           </div>
 
           <h2 class="portfolio-h2" data-line-reveal="scroll" data-delay="120">
-            <span class="reveal-line-mask"><span class="reveal-line-inner" style="transition-delay:120ms">Who I
-                am?</span></span>
+            <span class="reveal-line-mask"><span class="reveal-line-inner" style="transition-delay:120ms" data-i18n="portfolio_title">Who I am?</span></span>
           </h2>
         </div>
 
@@ -2602,7 +2696,7 @@
               <article class="portfolio-card">
                 <img src="./DPU.jpg" class="portfolio-card-bg" alt="" />
                 <div class="portfolio-card-top">
-                  <span>Studying — 2025</span>
+                  <span data-i18n="port_1_tag">Studying — 2025</span>
                   <span class="portfolio-card-badge">
                     <svg class="icon" aria-hidden="true">
                       <use href="#icon-arrow-up-right" />
@@ -2618,11 +2712,11 @@
                   </span>
                 </div>
                 <div class="portfolio-card-bottom">
-                  <h3 class="portfolio-card-title">DPU | Dhurakijpandit</h3>
-                  <p class="portfolio-card-desc">I am currently an undergraduate student, belonging to the 2025.</p>
+                  <h3 class="portfolio-card-title" data-i18n="port_1_title">DPU | Dhurakijpandit</h3>
+                  <p class="portfolio-card-desc" data-i18n="port_1_desc">I am currently an undergraduate student, belonging to the 2025.</p>
                   <div class="portfolio-card-tags">
-                    <span class="tag-chip">Computer Engineering</span>
-                    <span class="tag-chip">Programing</span>
+                    <span class="tag-chip" data-i18n="port_1_t1">Computer Engineering</span>
+                    <span class="tag-chip" data-i18n="port_1_t2">Programing</span>
                     <!-- <span class="tag-chip"></span> -->
                   </div>
                 </div>
@@ -2635,7 +2729,7 @@
               <article class="portfolio-card">
                 <img src="./online Business.png" class="portfolio-card-bg" alt="" />
                 <div class="portfolio-card-top">
-                  <span>Network Business — 2026</span>
+                  <span data-i18n="port_2_tag">Network Business — 2026</span>
                   <span class="portfolio-card-badge">
                     <svg class="icon" aria-hidden="true">
                       <use href="#icon-arrow-up-right" />
@@ -2651,13 +2745,12 @@
                   </span>
                 </div>
                 <div class="portfolio-card-bottom">
-                  <h3 class="portfolio-card-title">Online Business </h3>
-                  <p class="portfolio-card-desc">I built an online business
-                    going from not having knowledge.</p>
+                  <h3 class="portfolio-card-title" data-i18n="port_2_title">Online Business</h3>
+                  <p class="portfolio-card-desc" data-i18n="port_2_desc">I built an online business going from not having knowledge.</p>
                   <div class="portfolio-card-tags">
-                    <span class="tag-chip">Online Business</span>
-                    <span class="tag-chip">Content creator</span>
-                    <span class="tag-chip">Networking</span>
+                    <span class="tag-chip" data-i18n="port_2_t1">Online Business</span>
+                    <span class="tag-chip" data-i18n="port_2_t2">Content creator</span>
+                    <span class="tag-chip" data-i18n="port_2_t3">Networking</span>
                   </div>
                 </div>
               </article>
@@ -2669,7 +2762,7 @@
               <article class="portfolio-card">
                 <img src="./cashflow.jpg" class="portfolio-card-bg" alt="" />
                 <div class="portfolio-card-top">
-                  <span>Financial workshop</span>
+                  <span data-i18n="port_3_tag">Financial workshop</span>
                   <span class="portfolio-card-badge">
                     <svg class="icon" aria-hidden="true">
                       <use href="#icon-arrow-up-right" />
@@ -2685,12 +2778,11 @@
                   </span>
                 </div>
                 <div class="portfolio-card-bottom">
-                  <h3 class="portfolio-card-title">Cashflow Workshop</h3>
-                  <p class="portfolio-card-desc">Rich Dad Poor dad the greated of financial book
-                    You can understand How to Build Passive income in 2 hour.</p>
+                  <h3 class="portfolio-card-title" data-i18n="port_3_title">Cashflow Workshop</h3>
+                  <p class="portfolio-card-desc" data-i18n="port_3_desc">Rich Dad Poor dad the greated of financial book You can understand How to Build Passive income in 2 hour.</p>
                   <div class="portfolio-card-tags">
-                    <span class="tag-chip">Master of Cashflow</span>
-                    <span class="tag-chip">Financial Workshop</span>
+                    <span class="tag-chip" data-i18n="port_3_t1">Master of Cashflow</span>
+                    <span class="tag-chip" data-i18n="port_3_t2">Financial Workshop</span>
                   </div>
                 </div>
               </article>
@@ -2702,7 +2794,7 @@
               <article class="portfolio-card">
                 <img src="./weight-loss.png" class="portfolio-card-bg" alt="" />
                 <div class="portfolio-card-top">
-                  <span>Organize</span>
+                  <span data-i18n="port_4_tag">Organize</span>
                   <span class="portfolio-card-badge">
                     <svg class="icon" aria-hidden="true">
                       <use href="#icon-arrow-up-right" />
@@ -2718,13 +2810,12 @@
                   </span>
                 </div>
                 <div class="portfolio-card-bottom">
-                  <h3 class="portfolio-card-title">Health&Wellness</h3>
-                  <p class="portfolio-card-desc">Professional advice on weight loss
-                    Learn directly from Professional experts.</p>
+                  <h3 class="portfolio-card-title" data-i18n="port_4_title">Health&Wellness</h3>
+                  <p class="portfolio-card-desc" data-i18n="port_4_desc">Professional advice on weight loss Learn directly from Professional experts.</p>
                   <div class="portfolio-card-tags">
-                    <span class="tag-chip">Wellness</span>
-                    <span class="tag-chip">Longivity</span>
-                    <span class="tag-chip">Weight Loss</span>
+                    <span class="tag-chip" data-i18n="port_4_t1">Wellness</span>
+                    <span class="tag-chip" data-i18n="port_4_t2">Longivity</span>
+                    <span class="tag-chip" data-i18n="port_4_t3">Weight Loss</span>
                   </div>
                 </div>
               </article>
@@ -2740,13 +2831,12 @@
         <div data-reveal="scroll" data-delay="0" data-y="10" data-tension="210" data-friction="26">
           <span class="eyebrow eyebrow--dark">
             <span class="eyebrow-dot" aria-hidden="true"></span>
-            <span>Services</span>
+            <span data-i18n="services_eyebrow">Services</span>
           </span>
         </div>
 
         <h2 class="services-h2" data-line-reveal="scroll" data-delay="120">
-          <span class="reveal-line-mask"><span class="reveal-line-inner" style="transition-delay:120ms">What we do
-              best</span></span>
+          <span class="reveal-line-mask"><span class="reveal-line-inner" style="transition-delay:120ms" data-i18n="services_title">What we do best</span></span>
         </h2>
 
         <ul>
@@ -2754,8 +2844,8 @@
             data-friction="24">
             <a href="#services" class="service-link" data-hover="service-row">
               <span class="service-index">01</span>
-              <h3 class="service-title">Content Creator</h3>
-              <p class="service-desc">Scalable web &amp; mobile products built to last.</p>
+              <h3 class="service-title" data-i18n="service_1_title">Content Creator</h3>
+              <p class="service-desc" data-i18n="service_1_desc">Scalable web &amp; mobile products built to last.</p>
               <span class="service-badge">
                 <svg class="icon" aria-hidden="true">
                   <use href="#icon-arrow-up-right" />
@@ -2767,8 +2857,8 @@
             data-friction="24">
             <a href="#services" class="service-link" data-hover="service-row">
               <span class="service-index">02</span>
-              <h3 class="service-title">Find client</h3>
-              <p class="service-desc">Interfaces that feel effortless and look sharp.</p>
+              <h3 class="service-title" data-i18n="service_2_title">Find client</h3>
+              <p class="service-desc" data-i18n="service_2_desc">Interfaces that feel effortless and look sharp.</p>
               <span class="service-badge">
                 <svg class="icon" aria-hidden="true">
                   <use href="#icon-arrow-up-right" />
@@ -2780,8 +2870,8 @@
             data-friction="24">
             <a href="#services" class="service-link" data-hover="service-row">
               <span class="service-index">03</span>
-              <h3 class="service-title">Consulting</h3>
-              <p class="service-desc">How to Build Faceless Content form Organic.</p>
+              <h3 class="service-title" data-i18n="service_3_title">Consulting</h3>
+              <p class="service-desc" data-i18n="service_3_desc">How to Build Faceless Content form Organic.</p>
               <span class="service-badge">
                 <svg class="icon" aria-hidden="true">
                   <use href="#icon-arrow-up-right" />
@@ -2793,7 +2883,7 @@
             data-friction="24">
             <a href="#services" class="service-link" data-hover="service-row">
               <span class="service-index">04</span>
-              <h3 class="service-title">Consulting</h3>
+              <h3 class="service-title" data-i18n="service_3_title">Consulting</h3>
               <p class="service-desc">Strategy and direction for ambitious teams.</p>
               <span class="service-badge">
                 <svg class="icon" aria-hidden="true">
@@ -2813,30 +2903,29 @@
           data-friction="26">
           <span class="eyebrow eyebrow--light">
             <span class="eyebrow-dot" aria-hidden="true"></span>
-            <span>By the numbers</span>
+            <span data-i18n="stats_eyebrow">By the numbers</span>
           </span>
 
           <h2 class="stats-h2" data-line-reveal="scroll" data-delay="120">
-            <span class="reveal-line-mask"><span class="reveal-line-inner" style="transition-delay:120ms">Proof in the
-                result, not the words.</span></span>
+            <span class="reveal-line-mask"><span class="reveal-line-inner" style="transition-delay:120ms" data-i18n="stats_title">Proof in the result, not the words.</span></span>
           </h2>
 
           <ul class="stats-grid">
             <li data-reveal="scroll" data-delay="0" data-y="20" data-tension="200" data-friction="24">
               <div class="stat-num"><span data-stat-target="8000">0</span>+</div>
-              <p class="stat-label">Follower</p>
+              <p class="stat-label" data-i18n="stat_1_label">Follower</p>
             </li>
             <li data-reveal="scroll" data-delay="90" data-y="20" data-tension="200" data-friction="24">
               <div class="stat-num"><span data-stat-target="98">0</span>%</div>
-              <p class="stat-label">Client retention</p>
+              <p class="stat-label" data-i18n="stat_2_label">Client retention</p>
             </li>
             <li data-reveal="scroll" data-delay="180" data-y="20" data-tension="200" data-friction="24">
               <div class="stat-num"><span data-stat-target="8">0</span></div>
-              <p class="stat-label">month of craft</p>
+              <p class="stat-label" data-i18n="stat_3_label">month of craft</p>
             </li>
             <li data-reveal="scroll" data-delay="270" data-y="20" data-tension="200" data-friction="24">
               <div class="stat-num"><span data-stat-target="15">0</span>+</div>
-              <p class="stat-label">Team members</p>
+              <p class="stat-label" data-i18n="stat_4_label">Team members</p>
             </li>
           </ul>
         </div>
@@ -2849,16 +2938,14 @@
     <div class="shell footer-inner">
       <div class="footer-cta-row">
         <h2 class="footer-h2" data-line-reveal="scroll" data-delay="0" data-stagger="100">
-          <span class="reveal-line-mask"><span class="reveal-line-inner" style="transition-delay:0ms">Have a project in
-              mind?</span></span>
-          <span class="reveal-line-mask"><span class="reveal-line-inner" style="transition-delay:100ms">Let's get to
-              work.</span></span>
+          <span class="reveal-line-mask"><span class="reveal-line-inner" style="transition-delay:0ms" data-i18n="footer_title_1">Have a project in mind?</span></span>
+          <span class="reveal-line-mask"><span class="reveal-line-inner" style="transition-delay:100ms" data-i18n="footer_title_2">Let's get to work.</span></span>
         </h2>
 
         <button type="button" class="pill-btn pill-btn--light pill-btn--with-arrow" data-open-modal
           data-hover="pill:up-right:320:18">
           <span class="pill-btn-scale">
-            <span>Start a project</span>
+            <span data-i18n="modal_eyebrow">Start a project</span>
             <span class="pill-btn-badge">
               <span class="pill-btn-arrow">
                 <svg class="icon" aria-hidden="true">
@@ -2878,40 +2965,35 @@
             </svg>
             <span>Getup</span>
           </div>
-          <p class="footer-tagline">An independent studio crafting brands, products, and the systems that connect them.
-          </p>
+          <p class="footer-tagline" data-i18n="footer_tagline">An independent studio crafting brands, products, and the systems that connect them.</p>
         </div>
 
         <div>
-          <h3 class="footer-col-title">Company</h3>
+          <h3 class="footer-col-title" data-i18n="footer_col_company">Company</h3>
           <ul class="footer-col-list">
-            <li><a href="#about" class="animated-link" data-scroll-to="about" data-hover="link:4:0.65:320:22"><span
-                  class="animated-link-inner">About</span></a></li>
-            <li><a href="#careers" class="animated-link" data-scroll-to="careers" data-hover="link:4:0.65:320:22"><span
-                  class="animated-link-inner">Careers</span></a></li>
-            <li><a href="#partners" class="animated-link" data-hover="link:4:0.65:320:22"><span
-                  class="animated-link-inner">Partners</span></a></li>
-            <li><a href="#contact" class="animated-link" data-open-modal data-hover="link:4:0.65:320:22"><span
-                  class="animated-link-inner">Contact</span></a></li>
+            <li><a href="#about" class="animated-link" data-scroll-to="about" data-hover="link:4:0.65:320:22"><span class="animated-link-inner" data-i18n="footer_link_about">About</span></a></li>
+            <li><a href="#careers" class="animated-link" data-scroll-to="careers" data-hover="link:4:0.65:320:22"><span class="animated-link-inner" data-i18n="footer_link_careers">Careers</span></a></li>
+            <li><a href="#partners" class="animated-link" data-hover="link:4:0.65:320:22"><span class="animated-link-inner" data-i18n="footer_link_partners">Partners</span></a></li>
+            <li><a href="#contact" class="animated-link" data-open-modal data-hover="link:4:0.65:320:22"><span class="animated-link-inner" data-i18n="footer_link_contact">Contact</span></a></li>
           </ul>
         </div>
 
         <div>
-          <h3 class="footer-col-title">Services</h3>
+          <h3 class="footer-col-title" data-i18n="footer_col_services">Services</h3>
           <ul class="footer-col-list">
             <li><a href="#development" class="animated-link" data-scroll-to="services"
-                data-hover="link:4:0.65:320:22"><span class="animated-link-inner">Development</span></a></li>
+                data-hover="link:4:0.65:320:22"><span class="animated-link-inner" data-i18n="footer_link_dev">Development</span></a></li>
             <li><a href="#design" class="animated-link" data-scroll-to="services" data-hover="link:4:0.65:320:22"><span
                   class="animated-link-inner">Design</span></a></li>
             <li><a href="#qa" class="animated-link" data-scroll-to="services" data-hover="link:4:0.65:320:22"><span
                   class="animated-link-inner">Quality Assurance</span></a></li>
             <li><a href="#consulting" class="animated-link" data-scroll-to="services"
-                data-hover="link:4:0.65:320:22"><span class="animated-link-inner">Consulting</span></a></li>
+                data-hover="link:4:0.65:320:22"><span class="animated-link-inner" data-i18n="footer_link_consult">Consulting</span></a></li>
           </ul>
         </div>
 
         <div>
-          <h3 class="footer-col-title">Social</h3>
+          <h3 class="footer-col-title" data-i18n="footer_col_social">Social</h3>
           <ul class="footer-col-list">
             <li><a href="https://www.instagram.com/YOUR_PROFILE" target="_blank" rel="noopener noreferrer"
                 class="animated-link" data-hover="link:4:0.65:320:22"><span
@@ -2952,12 +3034,18 @@
         </svg>
         <span>Getup</span>
       </div>
-      <button type="button" id="close-menu-btn" class="nav-close-btn">
-        <svg class="icon" aria-hidden="true">
-          <use href="#icon-x" />
-        </svg>
-        <span>Close</span>
-      </button>
+      <div style="display:flex; align-items:center; gap:0.75rem;">
+        <div class="lang-switch lang-switch--overlay" role="group" aria-label="Language switcher">
+          <button type="button" class="lang-btn is-active" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" class="lang-btn" data-lang="th" aria-pressed="false">TH</button>
+        </div>
+        <button type="button" id="close-menu-btn" class="nav-close-btn">
+          <svg class="icon" aria-hidden="true">
+            <use href="#icon-x" />
+          </svg>
+          <span data-i18n="nav_close">Close</span>
+        </button>
+      </div>
     </div>
 
     <nav class="shell nav-overlay-body" aria-label="Overlay menu">
@@ -2966,41 +3054,41 @@
           <button type="button" class="nav-overlay-btn" style="transition-delay:80ms" data-nav-action="scroll"
             data-target="home">
             <span class="nav-overlay-idx">01</span>
-            <span class="nav-overlay-label">Home</span>
+            <span class="nav-overlay-label" data-i18n="nav_overlay_01">Home</span>
           </button>
         </li>
         <li>
           <button type="button" class="nav-overlay-btn" style="transition-delay:125ms" data-nav-action="scroll"
             data-target="works">
             <span class="nav-overlay-idx">02</span>
-            <span class="nav-overlay-label">Work</span>
+            <span class="nav-overlay-label" data-i18n="nav_overlay_02">Work</span>
           </button>
         </li>
         <li>
           <button type="button" class="nav-overlay-btn" style="transition-delay:170ms" data-nav-action="scroll"
             data-target="services">
             <span class="nav-overlay-idx">03</span>
-            <span class="nav-overlay-label">Services</span>
+            <span class="nav-overlay-label" data-i18n="nav_overlay_03">Services</span>
           </button>
         </li>
         <li>
           <button type="button" class="nav-overlay-btn" style="transition-delay:215ms" data-nav-action="scroll"
             data-target="about">
             <span class="nav-overlay-idx">04</span>
-            <span class="nav-overlay-label">Studio</span>
+            <span class="nav-overlay-label" data-i18n="nav_overlay_04">Studio</span>
           </button>
         </li>
         <li>
           <button type="button" class="nav-overlay-btn" style="transition-delay:260ms" data-nav-action="scroll"
             data-target="careers">
             <span class="nav-overlay-idx">05</span>
-            <span class="nav-overlay-label">Careers</span>
+            <span class="nav-overlay-label" data-i18n="nav_overlay_05">Careers</span>
           </button>
         </li>
         <li>
           <button type="button" class="nav-overlay-btn" style="transition-delay:305ms" data-nav-action="modal">
             <span class="nav-overlay-idx">06</span>
-            <span class="nav-overlay-label">Contact</span>
+            <span class="nav-overlay-label" data-i18n="nav_overlay_06">Contact</span>
           </button>
         </li>
       </ul>
@@ -3008,7 +3096,7 @@
 
     <div class="shell nav-overlay-bottom">
       <span id="nav-overlay-clock">Local time — 9:41am</span>
-      <button type="button" id="nav-start-project" class="nav-overlay-cta">Start a project →</button>
+      <button type="button" id="nav-start-project" class="nav-overlay-cta" data-i18n="nav_overlay_start">Start a project →</button>
     </div>
   </div>
 
@@ -3025,34 +3113,34 @@
         <div class="modal-heading-block">
           <div class="modal-eyebrow">
             <span class="modal-eyebrow-dot" aria-hidden="true"></span>
-            <span>Start a project</span>
+            <span data-i18n="modal_eyebrow">Start a project</span>
           </div>
-          <h2 id="modal-title" class="modal-h2">Tell us what you're building.</h2>
+          <h2 id="modal-title" class="modal-h2" data-i18n="modal_title">Tell us what you're building.</h2>
         </div>
 
         <form id="request-form" class="modal-form">
           <label class="modal-field">
-            <span class="modal-label">Name</span>
-            <input type="text" name="name" class="modal-control" required placeholder="Your name" />
+            <span class="modal-label" data-i18n="modal_label_name">Name</span>
+            <input type="text" name="name" class="modal-control" required placeholder="Your name" data-i18n-placeholder="modal_placeholder_name" />
           </label>
 
           <label class="modal-field">
-            <span class="modal-label">Email</span>
-            <input type="email" name="email" class="modal-control" required placeholder="you@company.com" />
+            <span class="modal-label" data-i18n="modal_label_email">Email</span>
+            <input type="email" name="email" class="modal-control" required placeholder="you@company.com" data-i18n-placeholder="modal_placeholder_email" />
           </label>
 
           <label class="modal-field">
-            <span class="modal-label">Project</span>
+            <span class="modal-label" data-i18n="modal_label_project">Project</span>
             <textarea name="project" rows="4" class="modal-control" required
-              placeholder="A few words about your project, timeline, and budget."></textarea>
+              placeholder="A few words about your project, timeline, and budget." data-i18n-placeholder="modal_placeholder_project"></textarea>
           </label>
 
           <div class="modal-bottom">
-            <span class="modal-note">We reply within one business day.</span>
+            <span class="modal-note" data-i18n="modal_note">We reply within one business day.</span>
             <button type="submit" id="modal-submit-btn" class="pill-btn pill-btn--dark pill-btn--with-arrow"
               data-hover="pill:up-right:320:18">
               <span class="pill-btn-scale">
-                <span id="modal-submit-label">Send request</span>
+                <span id="modal-submit-label" data-i18n="modal_submit">Send request</span>
                 <span class="pill-btn-badge">
                   <span class="pill-btn-arrow">
                     <svg class="icon" aria-hidden="true">
@@ -3072,12 +3160,12 @@
             <use href="#icon-logo" />
           </svg>
         </div>
-        <h2 class="modal-success-h2">Request received</h2>
-        <p class="modal-success-p">Thanks for reaching out — we'll get back to you within one business day.</p>
+        <h2 class="modal-success-h2" data-i18n="modal_success_title">Request received</h2>
+        <p class="modal-success-p" data-i18n="modal_success_desc">Thanks for reaching out — we'll get back to you within one business day.</p>
         <button type="button" id="modal-success-close" class="pill-btn pill-btn--dark pill-btn--no-arrow"
           data-hover="scale:1.04:320:18" data-hover-target=".pill-btn-scale">
           <span class="pill-btn-scale">
-            <span>Close</span>
+            <span data-i18n="modal_success_close">Close</span>
           </span>
         </button>
       </div>
@@ -3237,9 +3325,13 @@
     /* ==========================================================================
        4. Live Local Clock
        ========================================================================== */
-    const MONTHS = [
+    const MONTHS_EN = [
       'January', 'February', 'March', 'April', 'May', 'June',
       'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+    const MONTHS_TH = [
+      'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน',
+      'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'
     ];
     const clockTimeEl = document.getElementById('clock-time');
     const clockDateEl = document.getElementById('clock-date');
@@ -3252,10 +3344,18 @@
       const meridiem = hrs >= 12 ? 'pm' : 'am';
       const h12 = hrs % 12 || 12;
       const timeStr = `${h12}:${mins}${meridiem}`;
-      const dateStr = `${now.getDate()} ${MONTHS[now.getMonth()]}, ${now.getFullYear()}`;
+
+      const isTh = currentLang === 'th';
+      const months = isTh ? MONTHS_TH : MONTHS_EN;
+      const year = isTh ? now.getFullYear() + 543 : now.getFullYear();
+      const dateStr = `${now.getDate()} ${months[now.getMonth()]}, ${year}`;
+
       if (clockTimeEl) clockTimeEl.textContent = timeStr;
       if (clockDateEl) clockDateEl.textContent = dateStr;
-      if (navClockEl) navClockEl.textContent = `Local time — ${timeStr}`;
+      if (navClockEl) {
+        const prefix = isTh ? 'เวลาท้องถิ่น — ' : 'Local time — ';
+        navClockEl.textContent = `${prefix}${timeStr}`;
+      }
     }
     setInterval(updateClock, 1000);
     setTimeout(updateClock, 1000);
@@ -4465,6 +4565,358 @@
     }
 
     initAboutGlobe();
+
+    /* ==========================================================================
+       Language & Translation Engine (TH / EN)
+       ========================================================================== */
+    const TRANSLATIONS = {
+      en: {
+        nav_home: "Home",
+        nav_intro: "Introduction",
+        nav_services: "Services",
+        nav_solution: "Solution",
+        nav_about: "About me",
+        clock_label: "Local time",
+        menu_text: "Menu",
+        nav_close: "Close",
+        nav_overlay_01: "Home",
+        nav_overlay_02: "Work",
+        nav_overlay_03: "Services",
+        nav_overlay_04: "Studio",
+        nav_overlay_05: "Careers",
+        nav_overlay_06: "Contact",
+        nav_overlay_start: "Start a project →",
+
+        hero_eyebrow: "I can do ,You can do it.",
+        hero_h1_1: "You can build",
+        hero_h1_2: "Online Business",
+        hero_h1_3: "form Anyhere",
+        hero_cta_talk: "Let's Talk",
+        hero_cta_work: "View Work",
+        hero_status_start: "START SINCE 8 March 2026",
+        hero_status_learn: "Not Knowledge just Lerning by doing",
+        hero_status_scroll: "Scroll to explore",
+
+        carousel_0_cap: "Conversion design",
+        carousel_0_title: "Crafted to convert.",
+        carousel_1_cap: "Engineering",
+        carousel_1_title: "Built to scale.",
+        carousel_2_cap: "Brand systems",
+        carousel_2_title: "Designed to last.",
+
+        about_eyebrow: "The Studio",
+        about_globe_note: "Business can do everywhere.",
+        about_main: "I am neither talented or intelligent",
+        about_muted: "But I am someone who learns, because I believe that everyone has more potential than they realize.",
+        about_social_label: "Find us online",
+        about_cta: "About Us",
+
+        create_we: "We",
+        create_build: "Build",
+        create_together: "Together",
+
+        portfolio_eyebrow: "Portfolio",
+        portfolio_title: "Who I am?",
+
+        port_1_tag: "Studying — 2025",
+        port_1_title: "DPU | Dhurakijpandit",
+        port_1_desc: "I am currently an undergraduate student, belonging to the 2025.",
+        port_1_t1: "Computer Engineering",
+        port_1_t2: "Programing",
+
+        port_2_tag: "Network Business — 2026",
+        port_2_title: "Online Business",
+        port_2_desc: "I built an online business going from not having knowledge.",
+        port_2_t1: "Online Business",
+        port_2_t2: "Content creator",
+        port_2_t3: "Networking",
+
+        port_3_tag: "Financial workshop",
+        port_3_title: "Cashflow Workshop",
+        port_3_desc: "Rich Dad Poor dad the greated of financial book You can understand How to Build Passive income in 2 hour.",
+        port_3_t1: "Master of Cashflow",
+        port_3_t2: "Financial Workshop",
+
+        port_4_tag: "Organize",
+        port_4_title: "Health&Wellness",
+        port_4_desc: "Professional advice on weight loss Learn directly from Professional experts.",
+        port_4_t1: "Wellness",
+        port_4_t2: "Longivity",
+        port_4_t3: "Weight Loss",
+
+        services_eyebrow: "Services",
+        services_title: "What we do best",
+        service_1_title: "Content Creator",
+        service_1_desc: "Scalable web & mobile products built to last.",
+        service_2_title: "Find client",
+        service_2_desc: "Interfaces that feel effortless and look sharp.",
+        service_3_title: "Consulting",
+        service_3_desc: "How to Build Faceless Content form Organic.",
+
+        stats_eyebrow: "By the numbers",
+        stats_title: "Proof in the result, not the words.",
+        stat_1_label: "Follower",
+        stat_2_label: "Client retention",
+        stat_3_label: "month of craft",
+        stat_4_label: "Team members",
+
+        footer_title_1: "Have a project in mind?",
+        footer_title_2: "Let's get to work.",
+        footer_cta: "Start a project",
+        footer_tagline: "An independent studio crafting brands, products, and the systems that connect them.",
+        footer_col_company: "Company",
+        footer_link_about: "About",
+        footer_link_careers: "Careers",
+        footer_link_partners: "Partners",
+        footer_link_contact: "Contact",
+        footer_col_services: "Services",
+        footer_link_dev: "Development",
+        footer_link_design: "Design",
+        footer_link_qa: "Quality Assurance",
+        footer_link_consult: "Consulting",
+        footer_col_social: "Social",
+        footer_rights: "All rights reserved.",
+        footer_back_to_top: "Back to top",
+
+        modal_eyebrow: "Start a project",
+        modal_title: "Tell us what you're building.",
+        modal_label_name: "Name",
+        modal_placeholder_name: "Your name",
+        modal_label_email: "Email",
+        modal_placeholder_email: "you@company.com",
+        modal_label_project: "Project",
+        modal_placeholder_project: "A few words about your project, timeline, and budget.",
+        modal_note: "We reply within one business day.",
+        modal_submit: "Send request",
+        modal_success_title: "Request received",
+        modal_success_desc: "Thanks for reaching out — we'll get back to you within one business day.",
+        modal_success_close: "Close"
+      },
+      th: {
+        nav_home: "หน้าแรก",
+        nav_intro: "บทนำ",
+        nav_services: "บริการ",
+        nav_solution: "โซลูชัน",
+        nav_about: "เกี่ยวกับเรา",
+        clock_label: "เวลาท้องถิ่น",
+        menu_text: "เมนู",
+        nav_close: "ปิด",
+        nav_overlay_01: "หน้าแรก",
+        nav_overlay_02: "ผลงาน",
+        nav_overlay_03: "บริการ",
+        nav_overlay_04: "สตูดิโอ",
+        nav_overlay_05: "ร่วมงานกับเรา",
+        nav_overlay_06: "ติดต่อเรา",
+        nav_overlay_start: "เริ่มโปรเจกต์กับเรา →",
+
+        hero_eyebrow: "ผมทำได้ คุณก็ทำได้เช่นกัน",
+        hero_h1_1: "คุณสามารถสร้าง",
+        hero_h1_2: "ธุรกิจออนไลน์",
+        hero_h1_3: "ได้จากทุกที่บนโลก",
+        hero_cta_talk: "พูดคุยกับเรา",
+        hero_cta_work: "ดูผลงาน",
+        hero_status_start: "เริ่มต้นตั้งแต่ 8 มีนาคม 2026",
+        hero_status_learn: "ไม่ใช่แค่ความรู้ แต่คือการเรียนรู้ผ่านการลงมือทำจริง",
+        hero_status_scroll: "เลื่อนลงเพื่อสำรวจ",
+
+        carousel_0_cap: "ดีไซน์เพื่อผลลัพธ์",
+        carousel_0_title: "ออกแบบเพื่อสร้างยอดขายและผู้ติดตาม",
+        carousel_1_cap: "ระบบและโครงสร้าง",
+        carousel_1_title: "สร้างขึ้นเพื่อการเติบโตแบบก้าวกระโดด",
+        carousel_2_cap: "ระบบสร้างแบรนด์",
+        carousel_2_title: "ออกแบบเพื่อความยั่งยืนในระยะยาว",
+
+        about_eyebrow: "เกี่ยวกับสตูดิโอ",
+        about_globe_note: "สร้างธุรกิจได้จากทุกมุมโลก",
+        about_main: "ผมไม่ได้เป็นคนเก่ง หรือมีพรสวรรค์มาจากไหน",
+        about_muted: "แต่ผมคือคนที่เรียนรู้และลงมือทำ เพราะผมเชื่อว่าทุกคนมีศักยภาพ มากกว่าที่ตัวเองคิด",
+        about_social_label: "ติดตามเราทางออนไลน์",
+        about_cta: "เกี่ยวกับเรา",
+
+        create_we: "เรา",
+        create_build: "สร้าง",
+        create_together: "ไปด้วยกัน",
+
+        portfolio_eyebrow: "ผลงานและประวัติ",
+        portfolio_title: "ผมคือใคร?",
+
+        port_1_tag: "การศึกษา — 2025",
+        port_1_title: "DPU | มหาวิทยาลัยธุรกิจบัณฑิตย์",
+        port_1_desc: "ปัจจุบันกำลังศึกษาระดับปริญญาตรี ประจำปี 2025",
+        port_1_t1: "วิศวกรรมคอมพิวเตอร์",
+        port_1_t2: "การเขียนโปรแกรม",
+
+        port_2_tag: "ธุรกิจเครือข่าย — 2026",
+        port_2_title: "ธุรกิจออนไลน์",
+        port_2_desc: "สร้างธุรกิจออนไลน์ขึ้นมาตั้งแต่ตอนที่ไม่มีความรู้ จนเข้าใจระบบทั้งหมด",
+        port_2_t1: "ธุรกิจออนไลน์",
+        port_2_t2: "คอนเทนต์ครีเอเตอร์",
+        port_2_t3: "การสร้างเครือข่าย",
+
+        port_3_tag: "เวิร์กช็อปการเงิน",
+        port_3_title: "Cashflow Workshop",
+        port_3_desc: "หนังสือการเงินระดับตำนาน พ่อรวยสอนลูก ให้คุณเข้าใจวิธีสร้าง Passive Income ได้จริงภายใน 2 ชั่วโมง",
+        port_3_t1: "ผู้เชี่ยวชาญ Cashflow",
+        port_3_t2: "เวิร์กช็อปการเงิน",
+
+        port_4_tag: "การดูแลสุขภาพ",
+        port_4_title: "สุขภาพและความเป็นอยู่",
+        port_4_desc: "คำแนะนำการลดน้ำหนักอย่างถูกวิธี เรียนรู้ตรงจากผู้เชี่ยวชาญมืออาชีพ",
+        port_4_t1: "สุขภาพองค์รวม",
+        port_4_t2: "สุขภาพยืนยาว",
+        port_4_t3: "การลดน้ำหนัก",
+
+        services_eyebrow: "บริการของเรา",
+        services_title: "สิ่งที่เราเชี่ยวชาญที่สุด",
+        service_1_title: "คอนเทนต์ครีเอเตอร์",
+        service_1_desc: "สร้างคอนเทนต์คุณภาพเพื่อดึงดูดกลุ่มเป้าหมายอย่างยั่งยืน",
+        service_2_title: "การหาลูกค้าและกลุ่มเป้าหมาย",
+        service_2_desc: "เชื่อมต่อและขยายฐานลูกค้าตัวจริงสำหรับธุรกิจของคุณ",
+        service_3_title: "ที่ปรึกษาการตลาด",
+        service_3_desc: "เทคนิคสร้างตัวตนและ Faceless Content จาก Organic Reach 100%",
+
+        stats_eyebrow: "ตัวเลขและสถิติ",
+        stats_title: "พิสูจน์ด้วยผลลัพธ์ ไม่ใช่แค่คำพูด",
+        stat_1_label: "ผู้ติดตาม",
+        stat_2_label: "อัตราลูกค้ากลับมาซ้ำ",
+        stat_3_label: "เดือนแห่งการสั่งสมประสบการณ์",
+        stat_4_label: "สมาชิกในทีม",
+
+        footer_title_1: "มีโปรเจกต์ที่อยากเริ่มใช่ไหม?",
+        footer_title_2: "มาเริ่มลงมือทำไปด้วยกัน",
+        footer_cta: "เริ่มโปรเจกต์กับเรา",
+        footer_tagline: "สตูดิโออิสระที่มุ่งมั่นสร้างแบรนด์ ผลิตภัณฑ์ และระบบที่เชื่อมโยงธุรกิจเข้าด้วยกัน",
+        footer_col_company: "เกี่ยวกับบริษัท",
+        footer_link_about: "เกี่ยวกับเรา",
+        footer_link_careers: "ร่วมงานกับเรา",
+        footer_link_partners: "พาร์ทเนอร์",
+        footer_link_contact: "ติดต่อเรา",
+        footer_col_services: "บริการ",
+        footer_link_dev: "การพัฒนา",
+        footer_link_design: "การออกแบบ",
+        footer_link_qa: "การควบคุมคุณภาพ",
+        footer_link_consult: "ที่ปรึกษา",
+        footer_col_social: "โซเชียลมีเดีย",
+        footer_rights: "สงวนลิขสิทธิ์ทั้งหมด",
+        footer_back_to_top: "กลับสู่ด้านบน",
+
+        modal_eyebrow: "เริ่มโปรเจกต์กับเรา",
+        modal_title: "บอกเล่าสิ่งที่คุณต้องการสร้าง",
+        modal_label_name: "ชื่อ",
+        modal_placeholder_name: "ชื่อของคุณ",
+        modal_label_email: "อีเมล",
+        modal_placeholder_email: "you@company.com",
+        modal_label_project: "รายละเอียดโปรเจกต์",
+        modal_placeholder_project: "รายละเอียดคร่าวๆ เกี่ยวกับสิ่งที่คุณต้องการ ระยะเวลา และงบประมาณ",
+        modal_note: "เราจะตอบกลับภายใน 1 วันทำการ",
+        modal_submit: "ส่งคำขอ",
+        modal_success_title: "ได้รับข้อมูลเรียบร้อยแล้ว",
+        modal_success_desc: "ขอบคุณที่ติดต่อเข้ามา — เราจะติดต่อกลับหาคุณภายใน 1 วันทำการ",
+        modal_success_close: "ปิด"
+      }
+    };
+
+    let currentLang = 'en';
+
+    function setLanguage(lang) {
+      if (!TRANSLATIONS[lang]) lang = 'en';
+      currentLang = lang;
+      try {
+        localStorage.setItem('getup_lang', lang);
+      } catch (e) {}
+      document.documentElement.lang = lang;
+
+      // Update active toggle buttons
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        const isActive = btn.dataset.lang === lang;
+        btn.classList.toggle('is-active', isActive);
+        btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+
+      // Update data-i18n elements
+      const dict = TRANSLATIONS[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key] !== undefined) {
+          el.textContent = dict[key];
+        }
+      });
+
+      // Update placeholders
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (dict[key] !== undefined) {
+          el.setAttribute('placeholder', dict[key]);
+        }
+      });
+
+      // Update Carousel Items
+      if (typeof CAROUSEL_ITEMS !== 'undefined') {
+        CAROUSEL_ITEMS[0] = { caption: dict.carousel_0_cap, title: dict.carousel_0_title };
+        CAROUSEL_ITEMS[1] = { caption: dict.carousel_1_cap, title: dict.carousel_1_title };
+        CAROUSEL_ITEMS[2] = { caption: dict.carousel_2_cap, title: dict.carousel_2_title };
+
+        if (cardSlot) {
+          const item = CAROUSEL_ITEMS[carouselIdx];
+          cardSlot.innerHTML = `
+            <div class="hero-card-slide">
+              <span class="hero-card-caption">${item.caption}</span>
+              <p class="hero-card-title">${item.title}</p>
+            </div>
+          `;
+        }
+      }
+
+      // Re-tokenize About statement for word reveal
+      const aboutStmt = document.getElementById('about-statement');
+      if (aboutStmt) {
+        aboutStmt.innerHTML = `
+          <span data-word-group="main">${dict.about_main}</span><br>
+          <span class="about-h2-muted" data-word-group="muted">${dict.about_muted}</span>
+        `;
+        let wordIndex = 0;
+        aboutStmt.querySelectorAll('[data-word-group]').forEach((group) => {
+          const text = group.textContent;
+          const tokens = text.split(/(\s+)/);
+          group.textContent = '';
+          tokens.forEach((tok) => {
+            if (/^\s+$/.test(tok)) {
+              group.appendChild(document.createTextNode(tok));
+            } else if (tok.length > 0) {
+              const span = document.createElement('span');
+              span.className = 'reveal-word';
+              span.style.transitionDelay = `${wordIndex * 35}ms`;
+              span.textContent = tok;
+              group.appendChild(span);
+              wordIndex++;
+            }
+          });
+        });
+      }
+
+      // Refresh clock display
+      if (typeof updateClock === 'function') {
+        updateClock();
+      }
+    }
+
+    // Attach listeners to all language switcher buttons
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const lang = e.currentTarget.dataset.lang;
+        if (lang) setLanguage(lang);
+      });
+    });
+
+
+    // Initialize Language from localStorage or default 'en'
+    try {
+      const initialLang = localStorage.getItem('getup_lang') || 'en';
+      setLanguage(initialLang);
+    } catch(e) {
+      setLanguage('en');
+    }
+
   </script>
 </body>
 
