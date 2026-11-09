@@ -4,8 +4,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Getup — Build a Personal Brand form Organic content </title>
-  <meta name="description" content="Getup is an Build Oganic Personal Brand ." />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <title>Getup — Build a Personal Brand from Organic content</title>
+  <meta name="description" content="Build an Organic Personal Brand with Getup Studio." />
   <meta name="theme-color" content="#0a0a0a" />
   <link rel="icon" href="./favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -642,7 +644,8 @@
     }
 
     .animated-link--legal .animated-link-inner {
-      opacity: 0.7;
+      opacity: 0.82;
+      color: rgba(255, 255, 255, 0.8);
     }
 
     /* Text Reveal Mechanics */
@@ -1981,7 +1984,7 @@
       font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 0.025em;
-      color: rgba(255, 255, 255, 0.4);
+      color: rgba(255, 255, 255, 0.65);
       margin-bottom: 1rem;
     }
 
@@ -2001,7 +2004,7 @@
       border-top: 1px solid rgba(255, 255, 255, 0.1);
       padding-top: 2rem;
       font-size: 0.75rem;
-      color: rgba(255, 255, 255, 0.45);
+      color: rgba(255, 255, 255, 0.65);
     }
 
     @media (min-width: 640px) {
@@ -2587,7 +2590,7 @@
           </div>
 
           <!-- First-time Guide Tip -->
-          <aside id="lang-guide-tip" class="lang-guide-tip" role="tooltip" aria-hidden="true">
+          <div id="lang-guide-tip" class="lang-guide-tip" role="status" aria-live="polite" aria-hidden="true">
             <div class="lang-guide-arrow" aria-hidden="true"></div>
             <div class="lang-guide-body">
               <span class="lang-guide-icon" aria-hidden="true">
@@ -2611,7 +2614,7 @@
                 </svg>
               </button>
             </div>
-          </aside>
+          </div>
         </div>
 
         <button type="button" id="open-menu-btn" class="menu-btn" data-hover="scale:1.05:320:18"
@@ -2631,7 +2634,7 @@
     <!-- 2) Hero -->
     <section id="home" class="hero-section">
       <div id="liquid-container" class="liquid-reveal">
-        <img src="./hero-base.jpg" alt="Getup studio visual" class="liquid-base-img" fetchpriority="high" />
+        <img src="./hero-base.jpg" alt="Getup studio visual" class="liquid-base-img" fetchpriority="high" decoding="async" width="1440" height="900" />
         <canvas id="liquid-canvas" class="liquid-canvas" aria-hidden="true"></canvas>
       </div>
 
@@ -2872,7 +2875,7 @@
           </div>
         </li>
         <li class="create-item" data-reveal="scroll" data-delay="240" data-y="28" data-tension="200" data-friction="22">
-          <div class="create-tile create-tile--dark" data-hover="scale:1.03:300:18" aria-label="Arrow right">
+          <div class="create-tile create-tile--dark" data-hover="scale:1.03:300:18" role="img" aria-label="Arrow right">
             <svg class="icon" aria-hidden="true">
               <use href="#icon-arrow-right" />
             </svg>
@@ -2906,7 +2909,7 @@
           <li data-reveal="scroll" data-delay="0" data-y="48" data-tension="180" data-friction="26">
             <a href="#works" class="portfolio-card-link" data-hover="portfolio-card">
               <article class="portfolio-card">
-                <img src="./DPU.jpg" class="portfolio-card-bg" alt="" />
+                <img src="./DPU.jpg" class="portfolio-card-bg" alt="DPU Dhurakijpandit University Project" loading="lazy" decoding="async" width="600" height="800" />
                 <div class="portfolio-card-top">
                   <span data-i18n="port_1_tag">Studying — 2025</span>
                   <span class="portfolio-card-badge">
@@ -2940,7 +2943,7 @@
           <li data-reveal="scroll" data-delay="90" data-y="48" data-tension="180" data-friction="26">
             <a href="#works" class="portfolio-card-link" data-hover="portfolio-card">
               <article class="portfolio-card">
-                <img src="./online Business.png" class="portfolio-card-bg" alt="" />
+                <img src="./online%20Business.png" class="portfolio-card-bg" alt="Online Network Business Project" loading="lazy" decoding="async" width="600" height="800" />
                 <div class="portfolio-card-top">
                   <span data-i18n="port_2_tag">Network Business — 2026</span>
                   <span class="portfolio-card-badge">
@@ -2974,7 +2977,7 @@
           <li data-reveal="scroll" data-delay="180" data-y="48" data-tension="180" data-friction="26">
             <a href="#works" class="portfolio-card-link" data-hover="portfolio-card">
               <article class="portfolio-card">
-                <img src="./cashflow.jpg" class="portfolio-card-bg" alt="" />
+                <img src="./cashflow.jpg" class="portfolio-card-bg" alt="Cashflow Financial Workshop" loading="lazy" decoding="async" width="600" height="800" />
                 <div class="portfolio-card-top">
                   <span data-i18n="port_3_tag">Financial workshop</span>
                   <span class="portfolio-card-badge">
@@ -3007,7 +3010,7 @@
           <li data-reveal="scroll" data-delay="270" data-y="48" data-tension="180" data-friction="26">
             <a href="#works" class="portfolio-card-link" data-hover="portfolio-card">
               <article class="portfolio-card">
-                <img src="./weight-loss.png" class="portfolio-card-bg" alt="" />
+                <img src="./weight-loss.png" class="portfolio-card-bg" alt="Weight Loss and Health Management" loading="lazy" decoding="async" width="600" height="800" />
                 <div class="portfolio-card-top">
                   <span data-i18n="port_4_tag">Organize</span>
                   <span class="portfolio-card-badge">
@@ -3152,7 +3155,7 @@
   </main>
 
   <!-- 8) Footer -->
-  <footer id="about me" class="site-footer">
+  <footer id="site-footer" class="site-footer">
     <div class="shell footer-inner">
       <div class="footer-cta-row">
         <h2 class="footer-h2" data-line-reveal="scroll" data-delay="0" data-stagger="100">
@@ -3350,13 +3353,13 @@
           <label class="modal-field">
             <span class="modal-label" data-i18n="modal_label_name">Name</span>
             <input type="text" name="name" class="modal-control" required placeholder="Your name"
-              data-i18n-placeholder="modal_placeholder_name" />
+              autocomplete="name" data-i18n-placeholder="modal_placeholder_name" />
           </label>
 
           <label class="modal-field">
             <span class="modal-label" data-i18n="modal_label_email">Email</span>
             <input type="email" name="email" class="modal-control" required placeholder="you@company.com"
-              data-i18n-placeholder="modal_placeholder_email" />
+              autocomplete="email" data-i18n-placeholder="modal_placeholder_email" />
           </label>
 
           <label class="modal-field">
@@ -4169,6 +4172,7 @@
     const closeMenuBtn = document.getElementById('close-menu-btn');
     const navStartProject = document.getElementById('nav-start-project');
     let menuOpen = false;
+    let lastNavTrigger = null;
 
     const navFadeSpring = new SpringValue(0, 280, 32, (p) => {
       navOverlay.style.opacity = Math.max(0, Math.min(1, p));
@@ -4176,6 +4180,7 @@
 
     function openNavMenu() {
       if (menuOpen) return;
+      lastNavTrigger = document.activeElement;
       menuOpen = true;
       stopScroll();
       navOverlay.classList.add('is-mounted');
@@ -4183,6 +4188,9 @@
         navOverlay.classList.add('is-open');
       });
       navFadeSpring.to(1, { tension: 280, friction: 32 });
+      setTimeout(() => {
+        if (closeMenuBtn) closeMenuBtn.focus();
+      }, 50);
     }
 
     function closeNavMenu(afterClose = null) {
@@ -4192,6 +4200,10 @@
       navFadeSpring.to(0, { tension: 280, friction: 32 }, () => {
         navOverlay.classList.remove('is-mounted');
         startScroll();
+        if (lastNavTrigger && typeof lastNavTrigger.focus === 'function') {
+          lastNavTrigger.focus();
+          lastNavTrigger = null;
+        }
         if (afterClose) afterClose();
       });
     }
@@ -4229,6 +4241,7 @@
     const modalSubmitLabel = document.getElementById('modal-submit-label');
     let modalOpen = false;
     let modalClosing = false;
+    let lastFocusedElement = null;
 
     const modalSpring = new SpringValue(0, 260, 30, (p) => {
       const op = Math.max(0, Math.min(1, p));
@@ -4240,12 +4253,17 @@
 
     function openRequestModal() {
       if (modalOpen) return;
+      lastFocusedElement = document.activeElement;
       modalOpen = true;
       modalClosing = false;
       stopScroll();
       modalBackdrop.classList.add('is-mounted');
       modalSpring.set(0);
       modalSpring.to(1, { tension: 260, friction: 30 });
+      setTimeout(() => {
+        const first = requestForm ? requestForm.querySelector('input') : modalCloseBtn;
+        if (first) first.focus();
+      }, 50);
     }
 
     function closeRequestModal() {
@@ -4255,11 +4273,17 @@
       modalSpring.to(0, { tension: 260, friction: 30 }, () => {
         modalBackdrop.classList.remove('is-mounted');
         startScroll();
+        if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+          lastFocusedElement.focus();
+          lastFocusedElement = null;
+        }
         setTimeout(() => {
-          requestForm.reset();
-          modalSubmitLabel.textContent = 'Send request';
-          modalFormView.classList.remove('is-hidden');
-          modalSuccessView.classList.remove('is-active');
+          if (requestForm) requestForm.reset();
+          if (modalSubmitLabel) {
+            modalSubmitLabel.textContent = (typeof TRANSLATIONS !== 'undefined' && TRANSLATIONS[currentLang]?.modal_submit) || 'Send request';
+          }
+          if (modalFormView) modalFormView.classList.remove('is-hidden');
+          if (modalSuccessView) modalSuccessView.classList.remove('is-active');
         }, 300);
       });
     }
@@ -4285,19 +4309,52 @@
     if (requestForm) {
       requestForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        modalSubmitLabel.textContent = 'Sending…';
+        const sendingText = currentLang === 'th' ? 'กำลังส่งคำขอ…' : 'Sending…';
+        if (modalSubmitLabel) modalSubmitLabel.textContent = sendingText;
         setTimeout(() => {
           modalFormView.classList.add('is-hidden');
           modalSuccessView.classList.add('is-active');
+          if (modalSuccessClose) modalSuccessClose.focus();
         }, 350);
       });
     }
 
-    // Global Escape handler for NavMenu & RequestModal
+    // Global Keydown handler for NavMenu & RequestModal (Escape + Focus Trap)
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         if (modalOpen) closeRequestModal();
         else if (menuOpen) closeNavMenu();
+        return;
+      }
+
+      if (e.key === 'Tab') {
+        if (modalOpen && modalPanel) {
+          const focusables = modalPanel.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+          if (focusables.length) {
+            const first = focusables[0];
+            const last = focusables[focusables.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+              e.preventDefault();
+              last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+              e.preventDefault();
+              first.focus();
+            }
+          }
+        } else if (menuOpen && navOverlay) {
+          const focusables = navOverlay.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+          if (focusables.length) {
+            const first = focusables[0];
+            const last = focusables[focusables.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+              e.preventDefault();
+              last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+              e.preventDefault();
+              first.focus();
+            }
+          }
+        }
       }
     });
 
@@ -4491,6 +4548,7 @@
       });
 
       window.addEventListener('pointermove', (e) => {
+        if (!isVisible) return;
         if (isDragging) {
           const dx = e.clientX - lastMouseX;
           const dy = e.clientY - lastMouseY;
@@ -4536,7 +4594,9 @@
         animTime += 1;
 
         if (!isDragging) {
-          targetRotY += 0.0035;
+          if (!prefersReducedMotion) {
+            targetRotY += 0.0035;
+          }
           velX *= 0.94;
           velY *= 0.94;
           targetRotX += velX;
@@ -5114,14 +5174,34 @@
       }
     };
 
+    // Safe Storage Helpers to prevent SecurityError in restricted sandboxes
+    function safeStorageGet(key, fallback = null) {
+      try {
+        const val = localStorage.getItem(key);
+        return val !== null ? val : fallback;
+      } catch (e) {
+        return fallback;
+      }
+    }
+
+    function safeStorageSet(key, value) {
+      try {
+        localStorage.setItem(key, value);
+      } catch (e) { }
+    }
+
+    function safeStorageRemove(key) {
+      try {
+        localStorage.removeItem(key);
+      } catch (e) { }
+    }
+
     let currentLang = 'en';
 
     function setLanguage(lang) {
       if (!TRANSLATIONS[lang]) lang = 'en';
       currentLang = lang;
-      try {
-        localStorage.setItem('getup_lang', lang);
-      } catch (e) { }
+      safeStorageSet('getup_lang', lang);
       document.documentElement.lang = lang;
 
       // Update active toggle buttons
@@ -5139,6 +5219,12 @@
           el.textContent = dict[key];
         }
       });
+
+      // Synchronize open-menu-btn accessible name to match visible text
+      const menuBtn = document.getElementById('open-menu-btn');
+      if (menuBtn && dict.menu_text) {
+        menuBtn.setAttribute('aria-label', dict.menu_text);
+      }
 
       // Update placeholders
       document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
@@ -5208,12 +5294,8 @@
 
 
     // Initialize Language from localStorage or default 'en'
-    try {
-      const initialLang = localStorage.getItem('getup_lang') || 'en';
-      setLanguage(initialLang);
-    } catch (e) {
-      setLanguage('en');
-    }
+    const initialLang = safeStorageGet('getup_lang', 'en');
+    setLanguage(initialLang);
 
     /* ==========================================================================
        Language Switcher First-Time Guide Tip
@@ -5224,16 +5306,8 @@
       const tipBody = tip ? tip.querySelector('.lang-guide-body') : null;
       if (!tip) return;
 
-      // Clear any old blocking key
-      try {
-        localStorage.removeItem('getup_lang_guide_seen');
-      } catch (e) {}
-
       const STORAGE_KEY = 'getup_lang_tip_v3';
-      let hasSeen = false;
-      try {
-        hasSeen = localStorage.getItem(STORAGE_KEY) === 'true';
-      } catch (e) {}
+      const hasSeen = safeStorageGet(STORAGE_KEY) === 'true';
 
       if (hasSeen) return;
 
@@ -5243,9 +5317,7 @@
         dismissed = true;
         tip.classList.remove('is-visible');
         tip.setAttribute('aria-hidden', 'true');
-        try {
-          localStorage.setItem(STORAGE_KEY, 'true');
-        } catch (e) {}
+        safeStorageSet(STORAGE_KEY, 'true');
         setTimeout(() => {
           if (tip) tip.style.display = 'none';
         }, 400);
